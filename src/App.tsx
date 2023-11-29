@@ -8,6 +8,7 @@ import YearDisplay from "./pages/YearDisplay";
 function App() {
   return (
     <>
+      <h1>Event Calendar</h1>
       <BrowserRouter>
         <Routes>
           <Route path="/day-display" element={<DayDisplay />} />

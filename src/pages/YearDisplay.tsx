@@ -1,7 +1,7 @@
 const YearDisplay = () => {
   return (
     <>
-      <h1>Year Display</h1>
+      <h2>Year Display</h2>
       <p>Year display coming soon</p>
     </>
   );

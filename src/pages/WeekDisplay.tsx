@@ -1,7 +1,7 @@
 const WeekDisplay = () => {
   return (
     <>
-      <h1>Week Display</h1>
+      <h2>Week Display</h2>
       <p>Week display coming soon</p>
     </>
   );

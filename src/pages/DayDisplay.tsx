@@ -1,7 +1,7 @@
 const DayDisplay = () => {
   return (
     <>
-      <h1>Day Display</h1>
+      <h2>Day Display</h2>
       <p>Day display coming soon</p>
     </>
   );
