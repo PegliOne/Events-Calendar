@@ -1,14 +1,16 @@
-import "./App.css";
+import "./global.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DayDisplay from "./pages/DayDisplay";
-import WeekDisplay from "./pages/WeekDisplay";
-import MonthDisplay from "./pages/MonthDisplay";
-import YearDisplay from "./pages/YearDisplay";
+import DayDisplay from "./pages/DayDisplay/DayDisplay";
+import WeekDisplay from "./pages/WeekDisplay/WeekDisplay";
+import MonthDisplay from "./pages/MonthDisplay/MonthDisplay";
+import YearDisplay from "./pages/YearDisplay/YearDisplay";
 
 function App() {
   return (
     <>
-      <h1>Event Calendar</h1>
+      <header>
+        <h1>Event Calendar</h1>
+      </header>
       <BrowserRouter>
         <Routes>
           <Route path="/day-display" element={<DayDisplay />} />

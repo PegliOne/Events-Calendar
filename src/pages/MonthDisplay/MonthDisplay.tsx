@@ -1,10 +1,10 @@
-import Month from "../components/Month";
+import Month from "../../components/Month/Month";
 
 const MonthDisplay = () => {
   return (
-    <>
+    <main>
       <Month />
-    </>
+    </main>
   );
 };
 
