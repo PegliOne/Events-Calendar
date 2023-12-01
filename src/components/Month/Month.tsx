@@ -11,7 +11,23 @@ const Month = () => {
 
   return (
     <>
-      <h2 className={styles.month__heading}>November 2023</h2>
+      <h2 className={styles.month__heading}>
+        <a className={styles.month__navLink}>
+          <img
+            className={styles.month__navButton}
+            src="left-caret.svg"
+            alt="Left Button"
+          />
+        </a>
+        November 2023
+        <a className={styles.month__navLink}>
+          <img
+            className={styles.month__navButton}
+            src="right-caret.svg"
+            alt="Right Button"
+          />
+        </a>
+      </h2>
       <section className={styles.month__dayContainer}>
         {dates.map((date) => (
           <Day key={date} date={formatDate(date)} />

@@ -1,5 +1,16 @@
 .month__heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 32px;
+
+  .month__navLink {
+    height: 40px;
+
+    .month__navButton {
+      width: 40px;
+    }
+  }
 }
 
 .month__dayContainer {
