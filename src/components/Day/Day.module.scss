@@ -1,7 +1,23 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+/* Update dark mode styling when dark mode styling for entire project is added */
+
+html[native-dark-active] {
+  .day {
+    color: pallete.$secondary-background-colour;
+    background-color: pallete.$primary-text-colour;
+    border: 2px solid pallete.$secondary-background-colour;
+  }
+}
+
 .day {
-  width: 152px;
+  box-sizing: border-box;
+  width: 180px;
   height: 200px;
-  border: 2px solid black;
-  padding: 8px 12px;
+  padding: 12px 16px;
+  background-color: pallete.$secondary-background-colour;
+  border: 2px solid pallete.$primary-text-colour;
   text-align: right;
+  font-size: 1.2rem;
+  font-weight: 600;
 }

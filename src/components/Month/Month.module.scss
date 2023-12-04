@@ -1,14 +1,22 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
 .month__heading {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 32px;
+  font-size: 1.6rem;
 
   .month__navLink {
-    height: 40px;
+    height: 48px;
 
     .month__navButton {
-      width: 40px;
+      width: 48px;
+
+      &:hover {
+        filter: drop-shadow(0 0 2px pallete.$shadow-colour);
+        cursor: pointer;
+      }
     }
   }
 }
