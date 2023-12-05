@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 /* Update dark mode styling when dark mode styling for entire project is added */
@@ -11,13 +12,9 @@ html[native-dark-active] {
 }
 
 .day {
-  box-sizing: border-box;
-  width: 14.28%;
+  @include mixins.cell-styles;
+  width: 180px;
   height: 200px;
-  padding: 8px 12px;
-  background-color: pallete.$secondary-background-colour;
-  border: 2px solid pallete.$primary-text-colour;
+  padding-top: 9px;
   text-align: right;
-  font-size: 1.2rem;
-  font-weight: 600;
 }

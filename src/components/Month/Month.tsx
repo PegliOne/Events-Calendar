@@ -38,6 +38,7 @@ const Month = ({ name, year, numberOfDays }: MonthProps) => {
         {dates.map((date) => (
           <Day key={date} date={formatDate(date)} />
         ))}
+        <section className={styles.month__notes}>Notes</section>
       </section>
     </>
   );

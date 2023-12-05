@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/mixins.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .month__heading {
@@ -23,5 +24,14 @@
 
 .month__dayContainer {
   display: flex;
+  width: 1260px;
   flex-wrap: wrap;
+  border: 2px solid pallete.$primary-text-colour;
+
+  .month__notes {
+    @include mixins.cell-styles;
+    flex-grow: 1;
+    font-size: 1.3rem;
+    text-decoration: underline;
+  }
 }
