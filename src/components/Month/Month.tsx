@@ -2,8 +2,14 @@ import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
 
-const Month = () => {
-  const dates = _.range(1, 31);
+interface MonthProps {
+  name: string;
+  year: number;
+  numberOfDays: number;
+}
+
+const Month = ({ name, year, numberOfDays }: MonthProps) => {
+  const dates = _.range(1, numberOfDays + 1);
 
   const formatDate = (date: number) => {
     return date < 10 ? "0" + date : String(date);
@@ -19,7 +25,7 @@ const Month = () => {
             alt="Left Button"
           />
         </a>
-        November 2023
+        {name} {year}
         <a className={styles.month__navLink}>
           <img
             className={styles.month__navButton}
