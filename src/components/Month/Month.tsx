@@ -6,9 +6,10 @@ interface MonthProps {
   name: string;
   year: number;
   numberOfDays: number;
+  updateMonthIndex: (value: number) => void;
 }
 
-const Month = ({ name, year, numberOfDays }: MonthProps) => {
+const Month = ({ name, year, numberOfDays, updateMonthIndex }: MonthProps) => {
   const dates = _.range(1, numberOfDays + 1);
 
   const formatDate = (date: number) => {
@@ -18,21 +19,35 @@ const Month = ({ name, year, numberOfDays }: MonthProps) => {
   return (
     <>
       <h2 className={styles.month__heading}>
-        <a className={styles.month__navLink}>
-          <img
-            className={styles.month__navButton}
-            src="left-caret.svg"
-            alt="Left Button"
-          />
-        </a>
+        <div className={styles.month__buttonContainer}>
+          {name !== "January" && (
+            <button
+              className={styles.month__navButton}
+              onClick={() => updateMonthIndex(-1)}
+            >
+              <img
+                className={styles.navButton__icon}
+                src="left-caret.svg"
+                alt="Left Button"
+              />
+            </button>
+          )}
+        </div>
         {name} {year}
-        <a className={styles.month__navLink}>
-          <img
-            className={styles.month__navButton}
-            src="right-caret.svg"
-            alt="Right Button"
-          />
-        </a>
+        <div className={styles.month__buttonContainer}>
+          {name !== "December" && (
+            <button
+              className={styles.month__navButton}
+              onClick={() => updateMonthIndex(1)}
+            >
+              <img
+                className={styles.navButton__icon}
+                src="right-caret.svg"
+                alt="Right Button"
+              />
+            </button>
+          )}
+        </div>
       </h2>
       <section className={styles.month__dayContainer}>
         {dates.map((date) => (

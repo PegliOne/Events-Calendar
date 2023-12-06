@@ -3,20 +3,27 @@
 
 .month__heading {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  width: 340px;
+  margin: 0 auto 32px;
   font-size: 1.6rem;
+  line-height: 1;
 
-  .month__navLink {
+  .month__buttonContainer {
     height: 48px;
+    width: 48px;
 
     .month__navButton {
-      width: 48px;
+      height: 48px;
 
-      &:hover {
-        filter: drop-shadow(0 0 2px pallete.$shadow-colour);
-        cursor: pointer;
+      .navButton__icon {
+        width: 100%;
+
+        &:hover {
+          filter: drop-shadow(0 0 2px pallete.$shadow-colour);
+          cursor: pointer;
+        }
       }
     }
   }
