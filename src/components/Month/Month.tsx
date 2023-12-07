@@ -7,9 +7,16 @@ interface MonthProps {
   year: number;
   numberOfDays: number;
   updateMonthIndex: (value: number) => void;
+  openModal: (value: string) => void;
 }
 
-const Month = ({ name, year, numberOfDays, updateMonthIndex }: MonthProps) => {
+const Month = ({
+  name,
+  year,
+  numberOfDays,
+  updateMonthIndex,
+  openModal,
+}: MonthProps) => {
   const dates = _.range(1, numberOfDays + 1);
 
   const formatDate = (date: number) => {
@@ -51,7 +58,11 @@ const Month = ({ name, year, numberOfDays, updateMonthIndex }: MonthProps) => {
       </h2>
       <section className={styles.month__dayContainer}>
         {dates.map((date) => (
-          <Day key={date} date={formatDate(date)} />
+          <Day
+            key={date}
+            date={formatDate(date)}
+            openModal={() => openModal(formatDate(date))}
+          />
         ))}
         <section className={styles.month__notes}>Notes</section>
       </section>

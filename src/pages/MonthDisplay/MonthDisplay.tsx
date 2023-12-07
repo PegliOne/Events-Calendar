@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Month from "../../components/Month/Month";
+import Modal from "../../components/Modal/Modal";
 
 const MonthDisplay = () => {
   const date = new Date();
@@ -8,6 +9,7 @@ const MonthDisplay = () => {
   let index = date.getMonth();
 
   const [monthIndex, setMonthIndex] = useState(index);
+  const [modalDate, setModalDate] = useState("");
 
   const months = [
     { name: "January", numberOfDays: 31 },
@@ -29,6 +31,11 @@ const MonthDisplay = () => {
     setMonthIndex(newMonthIndex);
   };
 
+  const openModal = (date: string) => {
+    console.log(date);
+    setModalDate(date);
+  };
+
   return (
     <main>
       <Month
@@ -36,7 +43,9 @@ const MonthDisplay = () => {
         year={year}
         numberOfDays={months[monthIndex].numberOfDays}
         updateMonthIndex={updateMonthIndex}
+        openModal={openModal}
       />
+      <Modal date={modalDate} />
     </main>
   );
 };
