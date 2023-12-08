@@ -2,7 +2,7 @@ import styles from "./Day.module.scss";
 
 interface DayProps {
   date: string;
-  openModal: () => void;
+  openModal?: () => void;
 }
 
 const Day = ({ date, openModal }: DayProps) => {

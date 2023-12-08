@@ -1,6 +1,7 @@
 import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
+import { formatDate } from "../../utils/date-utils";
 
 interface MonthProps {
   name: string;
@@ -18,10 +19,6 @@ const Month = ({
   openModal,
 }: MonthProps) => {
   const dates = _.range(1, numberOfDays + 1);
-
-  const formatDate = (date: number) => {
-    return date < 10 ? "0" + date : String(date);
-  };
 
   return (
     <>
