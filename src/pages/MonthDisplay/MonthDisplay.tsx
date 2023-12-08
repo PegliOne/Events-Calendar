@@ -32,8 +32,11 @@ const MonthDisplay = () => {
   };
 
   const openModal = (date: string) => {
-    console.log(date);
     setModalDate(date);
+  };
+
+  const closeModal = () => {
+    setModalDate("");
   };
 
   return (
@@ -45,7 +48,9 @@ const MonthDisplay = () => {
         updateMonthIndex={updateMonthIndex}
         openModal={openModal}
       />
-      <Modal date={modalDate} />
+      {modalDate.length !== 0 && (
+        <Modal date={modalDate} closeModal={closeModal} />
+      )}
     </main>
   );
 };

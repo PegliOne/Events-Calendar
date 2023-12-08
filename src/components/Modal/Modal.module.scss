@@ -4,9 +4,9 @@
   display: flex;
   justify-content: space-between;
   position: absolute;
-  top: 35%;
-  left: 32%;
-  width: 660px;
+  top: 40%;
+  left: 28%;
+  width: 40%;
   height: 400px;
   padding: 12px 20px;
   color: pallete.$secondary-text-colour;
@@ -24,5 +24,9 @@
     color: pallete.$secondary-text-colour;
     font-size: 1.8rem;
     line-height: 1;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
