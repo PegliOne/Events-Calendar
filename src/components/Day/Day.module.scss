@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/mixins.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
@@ -14,10 +15,30 @@ html[native-dark-active] {
 main {
   .day {
     @include mixins.cell-styles;
-    width: 180px;
-    height: 200px;
+    width: 160px;
+    height: 180px;
     padding-top: 8px;
     text-align: right;
+
+    @include breakpoints.medium-desktop {
+      width: 136px;
+      height: 156px;
+    }
+
+    @include breakpoints.small-desktop {
+      width: 104px;
+      height: 124px;
+    }
+
+    @include breakpoints.tablet {
+      width: 78px;
+      height: 90px;
+    }
+
+    @include breakpoints.mobile {
+      width: 64px;
+      height: 76px;
+    }
   }
 
   > .day {
@@ -26,5 +47,10 @@ main {
     padding: 16px 20px;
     font-size: 1.2rem;
     text-align: left;
+
+    @include breakpoints.tablet {
+      width: 440px;
+      height: 600px;
+    }
   }
 }

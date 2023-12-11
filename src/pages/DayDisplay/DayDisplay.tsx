@@ -6,8 +6,6 @@ const DayDisplay = () => {
   const today = new Date();
   const date = today.getDate();
 
-  // Make openModal function option
-
   return (
     <main>
       <h2>December 2023</h2>
