@@ -3,10 +3,10 @@ import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
 
 const MonthDisplay = () => {
-  const date = new Date();
-  const year = date.getFullYear();
+  const today = new Date();
+  const year = today.getFullYear();
 
-  let index = date.getMonth();
+  let index = today.getMonth();
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");
