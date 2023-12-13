@@ -18,6 +18,9 @@ const Month = ({
   updateMonthIndex,
   openModal,
 }: MonthProps) => {
+  const today = new Date();
+  const currentDay = today.getDate();
+
   const dates = _.range(1, numberOfDays + 1);
 
   return (
@@ -58,6 +61,7 @@ const Month = ({
           <Day
             key={date}
             date={formatDate(date)}
+            isHighlighted={date === currentDay}
             openModal={() => openModal(formatDate(date))}
           />
         ))}

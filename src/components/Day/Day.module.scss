@@ -39,6 +39,10 @@ main {
       width: 64px;
       height: 76px;
     }
+
+    &_current {
+      background-color: pallete.$tertiary-background-colour;
+    }
   }
 
   > .day {
