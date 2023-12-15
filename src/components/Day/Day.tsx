@@ -2,7 +2,7 @@ import styles from "./Day.module.scss";
 
 interface DayProps {
   date: string;
-  isHighlighted: boolean;
+  isHighlighted?: boolean;
   openModal?: () => void;
 }
 

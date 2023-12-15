@@ -34,7 +34,7 @@ const Month = ({
             >
               <img
                 className={styles.navButton__icon}
-                src="left-caret.svg"
+                src="/left-caret.svg"
                 alt="Left Button"
               />
             </button>
@@ -49,7 +49,7 @@ const Month = ({
             >
               <img
                 className={styles.navButton__icon}
-                src="right-caret.svg"
+                src="/right-caret.svg"
                 alt="Right Button"
               />
             </button>

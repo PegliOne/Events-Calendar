@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
 
 const MonthDisplay = () => {
   const today = new Date();
   const year = today.getFullYear();
+  const defaultIndex = Number(useParams().index);
 
-  let index = today.getMonth();
+  let index = defaultIndex ? defaultIndex : today.getMonth();
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");
