@@ -6,8 +6,8 @@ import Modal from "../../components/Modal/Modal";
 const MonthDisplay = () => {
   const today = new Date();
   const year = today.getFullYear();
-  const defaultIndex = Number(useParams().index);
 
+  const defaultIndex = Number(useParams().index);
   let index = defaultIndex ? defaultIndex : today.getMonth();
 
   const [monthIndex, setMonthIndex] = useState(index);
