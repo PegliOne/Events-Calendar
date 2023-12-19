@@ -65,5 +65,10 @@ main {
       width: 440px;
       height: 600px;
     }
+
+    &:hover {
+      background-color: pallete.$secondary-background-colour;
+      cursor: default;
+    }
   }
 }
