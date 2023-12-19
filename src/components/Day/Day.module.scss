@@ -40,8 +40,17 @@ main {
       height: 76px;
     }
 
+    &:hover {
+      background-color: pallete.$hover-background-colour;
+      cursor: pointer;
+    }
+
     &_current {
       background-color: pallete.$tertiary-background-colour;
+
+      &:hover {
+        background-color: pallete.$secondary-hover-background-colour;
+      }
     }
   }
 
