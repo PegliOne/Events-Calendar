@@ -7,6 +7,7 @@ import Modal from "../../components/Modal/Modal";
 const MonthDisplay = () => {
   const today = new Date();
   const year = today.getFullYear();
+  const currentMonthIndex = today.getMonth();
 
   const defaultIndex = useParams().index;
   let index = Number(defaultIndex ?? today.getMonth());
@@ -35,6 +36,7 @@ const MonthDisplay = () => {
         name={month.name}
         year={year}
         numberOfDays={month.numberOfDays}
+        isCurrentMonth={monthIndex === currentMonthIndex}
         updateMonthIndex={updateMonthIndex}
         openModal={openModal}
       />

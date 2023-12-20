@@ -1,21 +1,32 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
 import { formatDate } from "../../utils/date-utils";
 import { getMonthData } from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
-  const date = today.getDate();
-
   let index = today.getMonth();
 
   const month = getMonthData(index);
 
+  const [date, setDate] = useState(today.getDate());
+
+  const updateDate = (value: number): void => {
+    let newDate = (date + value) % 32;
+    if (newDate === 0) newDate = 1;
+    setDate(newDate);
+  };
+
   return (
     <main>
-      <h2>
-        <Link to={`/month-display/${index}`}>{month.name} 2023</Link>
-      </h2>
+      <DayHeading
+        date={String(date)}
+        index={index}
+        monthName={month.name}
+        updateDate={updateDate}
+      />
       <Link to="/week-display">Show Full Week</Link>
       <Day key={date} date={formatDate(date)} />
     </main>

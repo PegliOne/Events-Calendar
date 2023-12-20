@@ -3,10 +3,11 @@ import styles from "./Day.module.scss";
 interface DayProps {
   date: string;
   isHighlighted?: boolean;
+  isMonthDisplay?: boolean;
   openModal?: () => void;
 }
 
-const Day = ({ date, isHighlighted, openModal }: DayProps) => {
+const Day = ({ date, isHighlighted, isMonthDisplay, openModal }: DayProps) => {
   let dayClasses = styles.day;
 
   if (isHighlighted) {
@@ -15,7 +16,7 @@ const Day = ({ date, isHighlighted, openModal }: DayProps) => {
 
   return (
     <section className={dayClasses} onClick={openModal}>
-      {date}
+      {isMonthDisplay && date}
     </section>
   );
 };

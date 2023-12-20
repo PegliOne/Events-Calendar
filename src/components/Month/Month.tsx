@@ -7,6 +7,7 @@ interface MonthProps {
   name: string;
   year: number;
   numberOfDays: number;
+  isCurrentMonth: boolean;
   updateMonthIndex: (value: number) => void;
   openModal: (value: string) => void;
 }
@@ -15,6 +16,7 @@ const Month = ({
   name,
   year,
   numberOfDays,
+  isCurrentMonth,
   updateMonthIndex,
   openModal,
 }: MonthProps) => {
@@ -61,7 +63,8 @@ const Month = ({
           <Day
             key={date}
             date={formatDate(date)}
-            isHighlighted={date === currentDay}
+            isHighlighted={date === currentDay && isCurrentMonth}
+            isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}
           />
         ))}
