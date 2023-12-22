@@ -22,7 +22,7 @@ const DayDisplay = () => {
   return (
     <main>
       <DayHeading
-        date={String(date)}
+        date={date}
         index={index}
         monthName={month.name}
         updateDate={updateDate}

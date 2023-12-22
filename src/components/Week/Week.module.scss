@@ -1,0 +1,29 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.week {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 720px;
+  border: 2px solid pallete.$primary-text-colour;
+  margin-top: 32px;
+
+  section {
+    @include mixins.cell-styles;
+    width: 50%;
+    height: 25% !important;
+    padding: 8px 12px !important;
+    font-size: 1.2rem !important;
+    text-align: left;
+
+    &.week__notes {
+      @include mixins.cell-styles;
+      flex-grow: 1;
+      font-size: 1.3rem;
+      text-align: center;
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,8 +1,9 @@
 import styles from "./DayHeading.module.scss";
+import ordinal from "ordinal";
 import { Link } from "react-router-dom";
 
 interface DayHeadingProps {
-  date: string;
+  date: number;
   index: number;
   monthName: string;
   updateDate: (value: number) => void;
@@ -16,29 +17,39 @@ const DayHeading = ({
 }: DayHeadingProps) => {
   return (
     <h2 className={styles.dayHeading}>
-      <button
-        className={styles.dayHeading__navButton}
-        onClick={() => updateDate(-1)}
-      >
-        <img
-          className={styles.navButton__icon}
-          src="/left-caret.svg"
-          alt="Left Button"
-        />
-      </button>
+      <div className={styles.dayHeading__navButton}>
+        {date > 1 && (
+          <button
+            className={styles.navButton__button}
+            onClick={() => updateDate(-1)}
+          >
+            <img
+              className={styles.navButton__icon}
+              src="/left-caret.svg"
+              alt="Left Button"
+            />
+          </button>
+        )}
+      </div>
+
       <Link to={`/month-display/${index}`}>
-        {date}th {monthName} 2023
+        {ordinal(date)} {monthName} 2023
       </Link>
-      <button
-        className={styles.dayHeading__navButton}
-        onClick={() => updateDate(1)}
-      >
-        <img
-          className={styles.navButton__icon}
-          src="/right-caret.svg"
-          alt="Right Button"
-        />
-      </button>
+
+      <div className={styles.dayHeading__navButton}>
+        {date < 31 && (
+          <button
+            className={styles.navButton__button}
+            onClick={() => updateDate(1)}
+          >
+            <img
+              className={styles.navButton__icon}
+              src="/right-caret.svg"
+              alt="Right Button"
+            />
+          </button>
+        )}
+      </div>
     </h2>
   );
 };
