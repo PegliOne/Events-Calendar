@@ -1,4 +1,5 @@
 import Week from "../../components/Week/Week";
+import { Link } from "react-router-dom";
 import { getMonthData } from "../../utils/month-utils";
 
 const WeekDisplay = () => {
@@ -11,7 +12,9 @@ const WeekDisplay = () => {
   return (
     <main>
       <h2>
-        {month.name} {year} : Week 4
+        <Link to={`/month-display/${index}`}>
+          {month.name} {year} : Week 4
+        </Link>
       </h2>
       <h3></h3>
       <Week />
