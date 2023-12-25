@@ -8,11 +8,11 @@ interface MonthHeadingProps {
 
 const MonthHeading = ({ name, year, updateMonthIndex }: MonthHeadingProps) => {
   return (
-    <h2 className={styles.month__heading}>
-      <div className={styles.month__buttonContainer}>
+    <h2 className={styles.monthHeading}>
+      <div className={styles.monthHeading__navButton}>
         {name !== "January" && (
           <button
-            className={styles.month__navButton}
+            className={styles.navButton__button}
             onClick={() => updateMonthIndex(-1)}
           >
             <img
@@ -24,10 +24,10 @@ const MonthHeading = ({ name, year, updateMonthIndex }: MonthHeadingProps) => {
         )}
       </div>
       {name} {year}
-      <div className={styles.month__buttonContainer}>
+      <div className={styles.monthHeading__navButton}>
         {name !== "December" && (
           <button
-            className={styles.month__navButton}
+            className={styles.navButton__button}
             onClick={() => updateMonthIndex(1)}
           >
             <img

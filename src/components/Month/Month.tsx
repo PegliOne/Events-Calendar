@@ -2,25 +2,14 @@ import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
 import { formatDate } from "../../utils/date-utils";
-import MonthHeading from "../MonthHeading/MonthHeading";
 
 interface MonthProps {
-  name: string;
-  year: number;
   numberOfDays: number;
   isCurrentMonth: boolean;
-  updateMonthIndex: (value: number) => void;
   openModal: (value: string) => void;
 }
 
-const Month = ({
-  name,
-  year,
-  numberOfDays,
-  isCurrentMonth,
-  updateMonthIndex,
-  openModal,
-}: MonthProps) => {
+const Month = ({ numberOfDays, isCurrentMonth, openModal }: MonthProps) => {
   const today = new Date();
   const currentDay = today.getDate();
 
@@ -28,12 +17,7 @@ const Month = ({
 
   return (
     <>
-      <MonthHeading
-        name={name}
-        year={year}
-        updateMonthIndex={updateMonthIndex}
-      />
-      <section className={styles.month__dayContainer}>
+      <section className={styles.month}>
         {dates.map((date) => (
           <Day
             key={date}

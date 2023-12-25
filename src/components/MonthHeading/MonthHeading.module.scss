@@ -1,6 +1,6 @@
 @use "../../assets/stylesheets/partials/pallete.scss";
 
-.month__heading {
+.monthHeading {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,11 +9,11 @@
   font-size: 1.6rem;
   line-height: 1;
 
-  .month__buttonContainer {
+  .monthHeading__navButton {
     height: 48px;
     width: 48px;
 
-    .month__navButton {
+    .navButton__button {
       height: 48px;
 
       .navButton__icon {
