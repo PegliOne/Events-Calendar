@@ -2,6 +2,7 @@ import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
 import { formatDate } from "../../utils/date-utils";
+import MonthHeading from "../MonthHeading/MonthHeading";
 
 interface MonthProps {
   name: string;
@@ -27,37 +28,11 @@ const Month = ({
 
   return (
     <>
-      <h2 className={styles.month__heading}>
-        <div className={styles.month__buttonContainer}>
-          {name !== "January" && (
-            <button
-              className={styles.month__navButton}
-              onClick={() => updateMonthIndex(-1)}
-            >
-              <img
-                className={styles.navButton__icon}
-                src="/left-caret.svg"
-                alt="Left Button"
-              />
-            </button>
-          )}
-        </div>
-        {name} {year}
-        <div className={styles.month__buttonContainer}>
-          {name !== "December" && (
-            <button
-              className={styles.month__navButton}
-              onClick={() => updateMonthIndex(1)}
-            >
-              <img
-                className={styles.navButton__icon}
-                src="/right-caret.svg"
-                alt="Right Button"
-              />
-            </button>
-          )}
-        </div>
-      </h2>
+      <MonthHeading
+        name={name}
+        year={year}
+        updateMonthIndex={updateMonthIndex}
+      />
       <section className={styles.month__dayContainer}>
         {dates.map((date) => (
           <Day

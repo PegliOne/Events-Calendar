@@ -1,0 +1,29 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.month__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 340px;
+  margin: 0 auto 32px;
+  font-size: 1.6rem;
+  line-height: 1;
+
+  .month__buttonContainer {
+    height: 48px;
+    width: 48px;
+
+    .month__navButton {
+      height: 48px;
+
+      .navButton__icon {
+        width: 100%;
+
+        &:hover {
+          filter: drop-shadow(0 0 2px pallete.$shadow-colour);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
