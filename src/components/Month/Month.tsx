@@ -4,12 +4,18 @@ import styles from "./Month.module.scss";
 import { formatDate } from "../../utils/date-utils";
 
 interface MonthProps {
+  index: number;
   numberOfDays: number;
   isCurrentMonth: boolean;
   openModal: (value: string) => void;
 }
 
-const Month = ({ numberOfDays, isCurrentMonth, openModal }: MonthProps) => {
+const Month = ({
+  index,
+  numberOfDays,
+  isCurrentMonth,
+  openModal,
+}: MonthProps) => {
   const today = new Date();
   const currentDay = today.getDate();
 
@@ -22,6 +28,7 @@ const Month = ({ numberOfDays, isCurrentMonth, openModal }: MonthProps) => {
           <Day
             key={date}
             date={formatDate(date)}
+            monthIndex={index}
             isHighlighted={date === currentDay && isCurrentMonth}
             isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}

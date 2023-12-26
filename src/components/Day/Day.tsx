@@ -1,13 +1,21 @@
+import { Link } from "react-router-dom";
 import styles from "./Day.module.scss";
 
 interface DayProps {
   date: string;
+  monthIndex: number;
   isHighlighted?: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
 }
 
-const Day = ({ date, isHighlighted, isMonthDisplay, openModal }: DayProps) => {
+const Day = ({
+  date,
+  monthIndex,
+  isHighlighted,
+  isMonthDisplay,
+  openModal,
+}: DayProps) => {
   let dayClasses = styles.day;
 
   if (isHighlighted) {
@@ -16,7 +24,14 @@ const Day = ({ date, isHighlighted, isMonthDisplay, openModal }: DayProps) => {
 
   return (
     <section className={dayClasses} onClick={openModal}>
-      {isMonthDisplay && date}
+      {isMonthDisplay && (
+        <Link
+          className={styles.day__date}
+          to={`/day-display/${monthIndex}/${date}`}
+        >
+          {date}
+        </Link>
+      )}
     </section>
   );
 };

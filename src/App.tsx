@@ -13,7 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MonthDisplay />} />
-          <Route path="/day-display" element={<DayDisplay />} />
+          <Route
+            path="/day-display/:monthIndex?/:date?"
+            element={<DayDisplay />}
+          />
           <Route path="/week-display" element={<WeekDisplay />} />
           <Route path="/month-display/:index?" element={<MonthDisplay />} />
         </Routes>

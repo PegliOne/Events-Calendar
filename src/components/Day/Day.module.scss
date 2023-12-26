@@ -52,6 +52,13 @@ main {
         background-color: pallete.$secondary-hover-background-colour;
       }
     }
+
+    .day__date {
+      justify-content: flex-start;
+      margin: 0;
+      font-size: unset;
+      text-decoration: none;
+    }
   }
 
   > .day {

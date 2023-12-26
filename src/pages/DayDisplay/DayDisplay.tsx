@@ -1,27 +1,36 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
 import { formatDate } from "../../utils/date-utils";
-import { getCurrentMonth } from "../../utils/month-utils";
+import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
-  const index = today.getDate();
-  const month = getCurrentMonth();
+  const currentMonth = getCurrentMonth();
 
-  const [date, setDate] = useState(today.getDate());
+  let date = Number(useParams().date);
+  let monthIndex = Number(useParams().monthIndex);
+
+  if (!(date && monthIndex)) {
+    date = today.getDate();
+    monthIndex = currentMonth.index;
+  }
+
+  const month = getMonthData(monthIndex);
+
+  const [displayedDate, setDisplayedDate] = useState(date);
 
   const updateDate = (value: number): void => {
-    let newDate = (date + value) % 32;
-    setDate(newDate);
+    let newDate = (displayedDate + value) % 32;
+    setDisplayedDate(newDate);
   };
 
   return (
     <main>
       <DayHeading
-        date={date}
-        index={index}
+        date={displayedDate}
+        index={month.index}
         monthName={month.name}
         updateDate={updateDate}
       />
