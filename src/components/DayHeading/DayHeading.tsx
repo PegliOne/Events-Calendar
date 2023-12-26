@@ -1,5 +1,6 @@
 import styles from "./DayHeading.module.scss";
 import ordinal from "ordinal";
+import NavButton from "../NavButton/NavButton";
 import { Link } from "react-router-dom";
 
 interface DayHeadingProps {
@@ -17,39 +18,19 @@ const DayHeading = ({
 }: DayHeadingProps) => {
   return (
     <h2 className={styles.dayHeading}>
-      <div className={styles.dayHeading__navButton}>
-        {date > 1 && (
-          <button
-            className={styles.navButton__button}
-            onClick={() => updateDate(-1)}
-          >
-            <img
-              className={styles.navButton__icon}
-              src="/left-caret.svg"
-              alt="Left Button"
-            />
-          </button>
-        )}
-      </div>
-
+      <NavButton
+        direction="left"
+        showButton={date > 1}
+        updateIndex={() => updateDate(-1)}
+      />
       <Link to={`/month-display/${index}`}>
         {ordinal(date)} {monthName} 2023
       </Link>
-
-      <div className={styles.dayHeading__navButton}>
-        {date < 31 && (
-          <button
-            className={styles.navButton__button}
-            onClick={() => updateDate(1)}
-          >
-            <img
-              className={styles.navButton__icon}
-              src="/right-caret.svg"
-              alt="Right Button"
-            />
-          </button>
-        )}
-      </div>
+      <NavButton
+        direction="right"
+        showButton={date < 31}
+        updateIndex={() => updateDate(1)}
+      />
     </h2>
   );
 };

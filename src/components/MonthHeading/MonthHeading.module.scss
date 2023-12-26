@@ -1,5 +1,3 @@
-@use "../../assets/stylesheets/partials/pallete.scss";
-
 .monthHeading {
   display: flex;
   justify-content: space-between;
@@ -8,22 +6,4 @@
   margin: 0 auto 32px;
   font-size: 1.6rem;
   line-height: 1;
-
-  .monthHeading__navButton {
-    height: 48px;
-    width: 48px;
-
-    .navButton__button {
-      height: 48px;
-
-      .navButton__icon {
-        width: 100%;
-
-        &:hover {
-          filter: drop-shadow(0 0 2px pallete.$shadow-colour);
-          cursor: pointer;
-        }
-      }
-    }
-  }
 }
