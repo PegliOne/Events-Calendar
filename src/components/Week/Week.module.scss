@@ -11,19 +11,14 @@
   margin-top: 32px;
 
   section {
-    @include mixins.cell-styles;
     width: 50%;
-    height: 25% !important;
-    padding: 8px 12px !important;
-    font-size: 1.2rem !important;
-    text-align: left;
+  }
 
-    &.week__notes {
-      @include mixins.cell-styles;
-      flex-grow: 1;
-      font-size: 1.3rem;
-      text-align: center;
-      text-decoration: underline;
-    }
+  .week__notes {
+    @include mixins.cell-styles;
+    flex-grow: 1;
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: underline;
   }
 }
