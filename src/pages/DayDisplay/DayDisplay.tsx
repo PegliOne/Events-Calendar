@@ -3,19 +3,17 @@ import { Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
 import { formatDate } from "../../utils/date-utils";
-import { getMonthData } from "../../utils/month-utils";
+import { getCurrentMonth } from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
-  let index = today.getMonth();
-
-  const month = getMonthData(index);
+  const index = today.getDate();
+  const month = getCurrentMonth();
 
   const [date, setDate] = useState(today.getDate());
 
   const updateDate = (value: number): void => {
     let newDate = (date + value) % 32;
-    if (newDate === 0) newDate = 1;
     setDate(newDate);
   };
 

@@ -1,18 +1,17 @@
 import Week from "../../components/Week/Week";
 import { Link } from "react-router-dom";
-import { getMonthData } from "../../utils/month-utils";
+import { getCurrentMonth } from "../../utils/month-utils";
 
 const WeekDisplay = () => {
   const today = new Date();
   const year = today.getFullYear();
 
-  let index = today.getMonth();
-  const month = getMonthData(index);
+  const month = getCurrentMonth();
 
   return (
     <main>
       <h2>
-        <Link to={`/month-display/${index}`}>
+        <Link to={`/month-display/${month.index}`}>
           {month.name} {year} : Week 4
         </Link>
       </h2>
