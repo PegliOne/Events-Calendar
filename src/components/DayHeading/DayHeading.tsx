@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 
 interface DayHeadingProps {
   date: number;
-  index: number;
+  monthIndex: number;
   monthName: string;
+  numberOfDays: number;
   updateDate: (value: number) => void;
 }
 
 const DayHeading = ({
   date,
-  index,
+  monthIndex,
   monthName,
+  numberOfDays,
   updateDate,
 }: DayHeadingProps) => {
   return (
@@ -23,12 +25,12 @@ const DayHeading = ({
         showButton={date > 1}
         updateIndex={() => updateDate(-1)}
       />
-      <Link to={`/month-display/${index}`}>
+      <Link to={`/month-display/${monthIndex}`}>
         {ordinal(date)} {monthName} 2023
       </Link>
       <NavButton
         direction="right"
-        showButton={date < 31}
+        showButton={date < numberOfDays}
         updateIndex={() => updateDate(1)}
       />
     </h2>

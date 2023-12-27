@@ -18,11 +18,12 @@ const DayDisplay = () => {
   }
 
   const month = getMonthData(monthIndex);
+  const maxDate = month.numberOfDays;
 
   const [displayedDate, setDisplayedDate] = useState(date);
 
   const updateDate = (value: number): void => {
-    let newDate = (displayedDate + value) % 32;
+    let newDate = (displayedDate + value) % (maxDate + 1);
     setDisplayedDate(newDate);
   };
 
@@ -30,12 +31,13 @@ const DayDisplay = () => {
     <main>
       <DayHeading
         date={displayedDate}
-        index={month.index}
+        monthIndex={month.index}
         monthName={month.name}
+        numberOfDays={month.numberOfDays}
         updateDate={updateDate}
       />
       <Link to="/week-display">Show Full Week</Link>
-      <Day key={date} date={formatDate(date)} />
+      <Day key={date} monthIndex={month.index} date={formatDate(date)} />
     </main>
   );
 };
