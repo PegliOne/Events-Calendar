@@ -1,16 +1,24 @@
 import Week from "../../components/Week/Week";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { getCurrentMonth } from "../../utils/month-utils";
+import { Link, useParams } from "react-router-dom";
+import { getMonthData, getCurrentMonth } from "../../utils/month-utils";
 
 const WeekDisplay = () => {
   const today = new Date();
   const year = today.getFullYear();
 
-  const month = getCurrentMonth();
+  const currentMonth = getCurrentMonth();
 
-  const date = today.getDate();
+  let date = Number(useParams().date);
+  let monthIndex = Number(useParams().monthIndex);
+
+  if (!(date && monthIndex)) {
+    date = today.getDate();
+    monthIndex = currentMonth.index;
+  }
+
+  const month = getMonthData(monthIndex);
 
   const weeks = [
     [1, 2, 3, 4, 5, 6, 7],
@@ -37,7 +45,7 @@ const WeekDisplay = () => {
     <main>
       <h2>
         <Link to={`/month-display/${month.index}`}>
-          {month.name} {year} : Week {weekNum}
+          {month.name} {year} : Week {weekNum + 1}
         </Link>
       </h2>
       <h3></h3>

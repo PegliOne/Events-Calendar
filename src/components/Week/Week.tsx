@@ -11,6 +11,8 @@ const Week = ({ week, openModal }: DayHeadingProps) => {
   const today = new Date();
   const currentDate = today.getDate();
 
+  // Fix isCurrentMonth, MonthIndex and isMonthDisplay hard-coding
+
   const isCurrentMonth = true;
 
   return (

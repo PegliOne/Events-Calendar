@@ -17,7 +17,10 @@ function App() {
             path="/day-display/:monthIndex?/:date?"
             element={<DayDisplay />}
           />
-          <Route path="/week-display" element={<WeekDisplay />} />
+          <Route
+            path="/week-display/:monthIndex?/:date?"
+            element={<WeekDisplay />}
+          />
           <Route path="/month-display/:index?" element={<MonthDisplay />} />
         </Routes>
       </BrowserRouter>

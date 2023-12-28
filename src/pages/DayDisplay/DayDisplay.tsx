@@ -37,7 +37,9 @@ const DayDisplay = () => {
         numberOfDays={month.numberOfDays}
         updateDate={updateDate}
       />
-      <Link to="/week-display">Show Full Week</Link>
+      <Link to={`/week-display/${monthIndex}/${displayedDate}`}>
+        Show Full Week
+      </Link>
       <Day
         key={displayedDate}
         monthIndex={month.index}
