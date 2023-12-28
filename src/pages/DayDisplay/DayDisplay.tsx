@@ -7,6 +7,7 @@ import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
+  const currentDate = today.getDate();
   const currentMonth = getCurrentMonth();
 
   let date = Number(useParams().date);
@@ -37,7 +38,11 @@ const DayDisplay = () => {
         updateDate={updateDate}
       />
       <Link to="/week-display">Show Full Week</Link>
-      <Day key={date} monthIndex={month.index} date={formatDate(date)} />
+      <Day
+        key={displayedDate}
+        monthIndex={month.index}
+        isHighlighted={displayedDate === currentDate}
+      />
     </main>
   );
 };

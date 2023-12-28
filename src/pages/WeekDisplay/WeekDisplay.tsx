@@ -1,4 +1,6 @@
 import Week from "../../components/Week/Week";
+import Modal from "../../components/Modal/Modal";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentMonth } from "../../utils/month-utils";
 
@@ -18,8 +20,18 @@ const WeekDisplay = () => {
     [29, 30, 31],
   ];
 
-  const weekNum = Math.floor(date / 7);
+  const weekNum = Math.floor((date - 1) / 7);
   const week = weeks[weekNum];
+
+  const [modalDate, setModalDate] = useState("");
+
+  const openModal = (date: string) => {
+    setModalDate(date);
+  };
+
+  const closeModal = () => {
+    setModalDate("");
+  };
 
   return (
     <main>
@@ -29,7 +41,10 @@ const WeekDisplay = () => {
         </Link>
       </h2>
       <h3></h3>
-      <Week week={week} />
+      <Week week={week} openModal={openModal} />
+      {modalDate.length !== 0 && (
+        <Modal date={modalDate} closeModal={closeModal} />
+      )}
     </main>
   );
 };

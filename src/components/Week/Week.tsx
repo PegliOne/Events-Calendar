@@ -4,9 +4,10 @@ import { formatDate } from "../../utils/date-utils";
 
 interface DayHeadingProps {
   week: number[];
+  openModal: (value: string) => void;
 }
 
-const Week = ({ week }: DayHeadingProps) => {
+const Week = ({ week, openModal }: DayHeadingProps) => {
   const today = new Date();
   const currentDate = today.getDate();
 
@@ -21,6 +22,7 @@ const Week = ({ week }: DayHeadingProps) => {
           monthIndex={11}
           isHighlighted={date === currentDate && isCurrentMonth}
           isMonthDisplay={true}
+          openModal={() => openModal(formatDate(date))}
         />
       ))}
       <section className={styles.week__notes}>Notes</section>

@@ -73,5 +73,11 @@ main {
       background-color: pallete.$secondary-background-colour;
       cursor: default;
     }
+
+    &_current {
+      &:hover {
+        background-color: pallete.$tertiary-background-colour;
+      }
+    }
   }
 }

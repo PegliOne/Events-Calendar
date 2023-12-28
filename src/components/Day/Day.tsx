@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Day.module.scss";
 
 interface DayProps {
-  date: string;
+  date?: string;
   monthIndex: number;
   isHighlighted?: boolean;
   isMonthDisplay?: boolean;
