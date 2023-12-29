@@ -1,0 +1,83 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+/* Update dark mode styling when dark mode styling for entire project is added */
+
+html[native-dark-active] {
+  .day {
+    color: pallete.$secondary-background-colour;
+    background-color: pallete.$primary-text-colour;
+    border: 2px solid pallete.$secondary-background-colour;
+  }
+}
+
+main {
+  .day {
+    @include mixins.cell-styles;
+    width: calc(100% / 7);
+    height: 180px;
+    padding-top: 8px;
+    text-align: right;
+
+    @include breakpoints.medium-desktop {
+      height: 156px;
+    }
+
+    @include breakpoints.small-desktop {
+      height: 124px;
+    }
+
+    @include breakpoints.tablet {
+      height: 90px;
+    }
+
+    @include breakpoints.mobile {
+      height: 76px;
+    }
+
+    &:hover {
+      background-color: pallete.$hover-background-colour;
+      cursor: pointer;
+    }
+
+    &_current {
+      background-color: pallete.$tertiary-background-colour;
+
+      &:hover {
+        background-color: pallete.$secondary-hover-background-colour;
+      }
+    }
+
+    .day__date {
+      justify-content: flex-start;
+      margin: 0;
+      font-size: unset;
+      text-decoration: none;
+    }
+  }
+
+  > .day {
+    width: 600px;
+    height: 800px;
+    padding: 16px 20px;
+    font-size: 1.2rem;
+    text-align: left;
+
+    @include breakpoints.tablet {
+      width: 440px;
+      height: 600px;
+    }
+
+    &:hover {
+      background-color: pallete.$secondary-background-colour;
+      cursor: default;
+    }
+
+    &_current {
+      &:hover {
+        background-color: pallete.$tertiary-background-colour;
+      }
+    }
+  }
+}

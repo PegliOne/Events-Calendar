@@ -1,0 +1,33 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/mixins.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.month {
+  display: flex;
+  width: 1120px;
+  flex-wrap: wrap;
+  border: 2px solid pallete.$primary-text-colour;
+
+  @include breakpoints.medium-desktop {
+    width: 952px;
+  }
+
+  @include breakpoints.small-desktop {
+    width: 728px;
+  }
+
+  @include breakpoints.tablet {
+    width: 546px;
+  }
+
+  @include breakpoints.mobile {
+    width: 448px;
+  }
+
+  .month__notes {
+    @include mixins.cell-styles;
+    flex-grow: 1;
+    font-size: 1.3rem;
+    text-decoration: underline;
+  }
+}

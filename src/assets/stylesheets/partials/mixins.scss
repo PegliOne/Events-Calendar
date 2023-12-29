@@ -1,0 +1,32 @@
+@use "./breakpoints.scss";
+@use "./pallete.scss";
+
+@mixin cell-styles {
+  box-sizing: border-box;
+  height: 180px;
+  padding: 8px 12px;
+  background-color: pallete.$secondary-background-colour;
+  border: 1px solid pallete.$primary-text-colour;
+  line-height: 1;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  @include breakpoints.medium-desktop {
+    height: 156px;
+  }
+
+  @include breakpoints.small-desktop {
+    height: 124px;
+  }
+
+  @include breakpoints.tablet {
+    height: 90px;
+    padding: 6px;
+    font-size: 1rem;
+  }
+
+  @include breakpoints.mobile {
+    height: 76px;
+    font-size: 0.8rem;
+  }
+}
