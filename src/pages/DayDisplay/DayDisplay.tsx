@@ -43,7 +43,7 @@ const DayDisplay = () => {
       <Day
         key={displayedDate}
         monthIndex={month.index}
-        isHighlighted={displayedDate === currentDate}
+        hasCurrentDate={displayedDate === currentDate}
       />
     </main>
   );

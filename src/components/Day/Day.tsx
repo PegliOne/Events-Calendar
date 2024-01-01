@@ -4,7 +4,7 @@ import styles from "./Day.module.scss";
 interface DayProps {
   date?: string;
   monthIndex: number;
-  isHighlighted?: boolean;
+  hasCurrentDate?: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
 }
@@ -12,13 +12,13 @@ interface DayProps {
 const Day = ({
   date,
   monthIndex,
-  isHighlighted,
+  hasCurrentDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
   let dayClasses = styles.day;
 
-  if (isHighlighted) {
+  if (hasCurrentDate) {
     dayClasses += ` ${styles.day_current}`;
   }
 

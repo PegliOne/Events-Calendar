@@ -10,8 +10,8 @@ const MonthDisplay = () => {
   const year = today.getFullYear();
   const currentMonth = getCurrentMonth();
 
-  const defaultIndex = useParams().index;
-  let index = Number(defaultIndex ?? today.getMonth());
+  const paramsIndex = useParams().index;
+  let index = Number(paramsIndex ?? today.getMonth());
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");

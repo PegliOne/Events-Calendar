@@ -17,7 +17,7 @@ const Month = ({
   openModal,
 }: MonthProps) => {
   const today = new Date();
-  const currentDay = today.getDate();
+  const currentDate = today.getDate();
 
   const dates = _.range(1, numberOfDays + 1);
 
@@ -29,7 +29,7 @@ const Month = ({
             key={date}
             date={formatDate(date)}
             monthIndex={index}
-            isHighlighted={date === currentDay && isCurrentMonth}
+            hasCurrentDate={date === currentDate && isCurrentMonth}
             isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}
           />
