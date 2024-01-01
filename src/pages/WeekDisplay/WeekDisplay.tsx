@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { splitIntoWeeks } from "../../utils/week-utils";
 import { getMonthData, getCurrentMonth } from "../../utils/month-utils";
+import { openModal, closeModal } from "../../utils/modal-utils";
 
 const WeekDisplay = () => {
   const today = new Date();
@@ -30,14 +31,6 @@ const WeekDisplay = () => {
 
   const [modalDate, setModalDate] = useState("");
 
-  const openModal = (date: string) => {
-    setModalDate(date);
-  };
-
-  const closeModal = () => {
-    setModalDate("");
-  };
-
   return (
     <main>
       <h2>
@@ -46,9 +39,9 @@ const WeekDisplay = () => {
         </Link>
       </h2>
       <h3></h3>
-      <Week week={week} openModal={openModal} />
+      <Week week={week} openModal={() => openModal("11", setModalDate)} />
       {modalDate.length !== 0 && (
-        <Modal date={modalDate} closeModal={closeModal} />
+        <Modal date={modalDate} closeModal={() => closeModal(setModalDate)} />
       )}
     </main>
   );

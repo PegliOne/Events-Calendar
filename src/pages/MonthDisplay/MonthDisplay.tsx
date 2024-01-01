@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
+import { openModal, closeModal } from "../../utils/modal-utils";
 import MonthHeading from "../../components/MonthHeading/MonthHeading";
 import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
@@ -23,14 +24,6 @@ const MonthDisplay = () => {
     setMonthIndex(newMonthIndex);
   };
 
-  const openModal = (date: string) => {
-    setModalDate(date);
-  };
-
-  const closeModal = () => {
-    setModalDate("");
-  };
-
   return (
     <main>
       <MonthHeading
@@ -42,10 +35,10 @@ const MonthDisplay = () => {
         index={month.index}
         numberOfDays={month.numberOfDays}
         isCurrentMonth={monthIndex === currentMonth.index}
-        openModal={openModal}
+        openModal={() => openModal("11", setModalDate)}
       />
       {modalDate.length !== 0 && (
-        <Modal date={modalDate} closeModal={closeModal} />
+        <Modal date={modalDate} closeModal={() => closeModal(setModalDate)} />
       )}
     </main>
   );
