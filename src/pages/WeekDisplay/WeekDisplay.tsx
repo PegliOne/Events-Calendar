@@ -7,24 +7,15 @@ import {
   getMonthData,
   getCurrentMonth,
   getMonthDates,
+  setMonthAndDate,
 } from "../../utils/month-utils";
 import { openModal, closeModal } from "../../utils/modal-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 
 const WeekDisplay = () => {
-  const currentMonth = getCurrentMonth();
   const year = getCurrentYear();
 
-  let date = Number(useParams().date);
-  let monthIndex = Number(useParams().monthIndex);
-
-  if (!(date && monthIndex)) {
-    const today = new Date();
-    date = today.getDate();
-    monthIndex = currentMonth.index;
-  }
-
-  const month = getMonthData(monthIndex);
+  const { month, date } = setMonthAndDate();
   const dates = getMonthDates(month.numberOfDays);
 
   const weeks = splitIntoWeeks(dates);

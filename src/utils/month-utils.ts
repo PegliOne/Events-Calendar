@@ -1,4 +1,5 @@
 import * as _ from "underscore";
+import { useParams } from "react-router-dom";
 
 export const getCurrentMonth = () => {
   const today = new Date();
@@ -27,4 +28,18 @@ export const getMonthData = (index: number) => {
 
 export const getMonthDates = (numberOfDays: number) => {
   return _.range(1, numberOfDays + 1);
+};
+
+export const setMonthAndDate = () => {
+  let date = Number(useParams().date);
+  let monthIndex = Number(useParams().monthIndex);
+
+  if (!(date && monthIndex)) {
+    const today = new Date();
+    date = today.getDate();
+    monthIndex = getCurrentMonth().index;
+  }
+
+  const month = getMonthData(monthIndex);
+  return { month: month, date: date };
 };

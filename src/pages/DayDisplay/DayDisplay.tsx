@@ -3,28 +3,22 @@ import { useParams, Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
 import { formatDate } from "../../utils/date-utils";
-import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
+import {
+  getCurrentMonth,
+  getMonthData,
+  setMonthAndDate,
+} from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
   const currentDate = today.getDate();
-  const currentMonth = getCurrentMonth();
 
-  let date = Number(useParams().date);
-  let monthIndex = Number(useParams().monthIndex);
-
-  if (!(date && monthIndex)) {
-    date = today.getDate();
-    monthIndex = currentMonth.index;
-  }
-
-  const month = getMonthData(monthIndex);
-  const maxDate = month.numberOfDays;
+  const { month, date } = setMonthAndDate();
 
   const [displayedDate, setDisplayedDate] = useState(date);
 
   const updateDate = (value: number): void => {
-    let newDate = (displayedDate + value) % (maxDate + 1);
+    let newDate = (displayedDate + value) % (month.numberOfDays + 1);
     setDisplayedDate(newDate);
   };
 
@@ -37,7 +31,7 @@ const DayDisplay = () => {
         numberOfDays={month.numberOfDays}
         updateDate={updateDate}
       />
-      <Link to={`/week-display/${monthIndex}/${displayedDate}`}>
+      <Link to={`/week-display/${month.index}/${displayedDate}`}>
         Show Full Week
       </Link>
       <Day
