@@ -1,3 +1,5 @@
+import * as _ from "underscore";
+
 export const getCurrentMonth = () => {
   const today = new Date();
   let index = today.getMonth();
@@ -21,4 +23,8 @@ export const getMonthData = (index: number) => {
   ];
 
   return months[index];
+};
+
+export const getMonthDates = (numberOfDays: number) => {
+  return _.range(1, numberOfDays + 1);
 };

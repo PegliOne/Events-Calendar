@@ -1,29 +1,31 @@
-import * as _ from "underscore";
 import Week from "../../components/Week/Week";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { splitIntoWeeks } from "../../utils/week-utils";
-import { getMonthData, getCurrentMonth } from "../../utils/month-utils";
+import {
+  getMonthData,
+  getCurrentMonth,
+  getMonthDates,
+} from "../../utils/month-utils";
 import { openModal, closeModal } from "../../utils/modal-utils";
+import { getCurrentYear } from "../../utils/year-utils";
 
 const WeekDisplay = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-
   const currentMonth = getCurrentMonth();
+  const year = getCurrentYear();
 
   let date = Number(useParams().date);
   let monthIndex = Number(useParams().monthIndex);
 
   if (!(date && monthIndex)) {
+    const today = new Date();
     date = today.getDate();
     monthIndex = currentMonth.index;
   }
 
   const month = getMonthData(monthIndex);
-
-  const dates = _.range(1, month.numberOfDays + 1);
+  const dates = getMonthDates(month.numberOfDays);
 
   const weeks = splitIntoWeeks(dates);
   const weekNum = Math.floor((date - 1) / 7);

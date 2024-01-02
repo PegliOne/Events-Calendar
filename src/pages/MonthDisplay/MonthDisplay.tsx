@@ -5,14 +5,14 @@ import { openModal, closeModal } from "../../utils/modal-utils";
 import MonthHeading from "../../components/MonthHeading/MonthHeading";
 import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
+import { getCurrentYear } from "../../utils/year-utils";
 
 const MonthDisplay = () => {
-  const today = new Date();
-  const year = today.getFullYear();
   const currentMonth = getCurrentMonth();
+  const year = getCurrentYear();
 
   const paramsIndex = useParams().index;
-  let index = Number(paramsIndex ?? today.getMonth());
+  let index = Number(paramsIndex ?? currentMonth.index);
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");

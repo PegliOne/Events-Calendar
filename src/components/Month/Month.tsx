@@ -1,7 +1,7 @@
-import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
 import { formatDate } from "../../utils/date-utils";
+import { getMonthDates } from "../../utils/month-utils";
 
 interface MonthProps {
   index: number;
@@ -19,7 +19,7 @@ const Month = ({
   const today = new Date();
   const currentDate = today.getDate();
 
-  const dates = _.range(1, numberOfDays + 1);
+  const dates = getMonthDates(numberOfDays);
 
   return (
     <>
