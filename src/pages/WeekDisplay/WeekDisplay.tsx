@@ -9,7 +9,6 @@ import {
   getMonthDates,
   setMonthAndDate,
 } from "../../utils/month-utils";
-import { openModal, closeModal } from "../../utils/modal-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 
 const WeekDisplay = () => {
@@ -24,6 +23,14 @@ const WeekDisplay = () => {
 
   const [modalDate, setModalDate] = useState("");
 
+  const openModal = (date: string) => {
+    setModalDate(date);
+  };
+
+  const closeModal = () => {
+    setModalDate("");
+  };
+
   return (
     <main>
       <h2>
@@ -32,9 +39,9 @@ const WeekDisplay = () => {
         </Link>
       </h2>
       <h3></h3>
-      <Week week={week} openModal={() => openModal("11", setModalDate)} />
+      <Week week={week} openModal={openModal} />
       {modalDate.length !== 0 && (
-        <Modal date={modalDate} closeModal={() => closeModal(setModalDate)} />
+        <Modal date={modalDate} closeModal={closeModal} />
       )}
     </main>
   );
