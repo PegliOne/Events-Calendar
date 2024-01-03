@@ -10,6 +10,7 @@ import {
   setMonthAndDate,
 } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
+import NavButton from "../../components/NavButton/NavButton";
 
 const WeekDisplay = () => {
   const year = getCurrentYear();
@@ -19,9 +20,14 @@ const WeekDisplay = () => {
 
   const weeks = splitIntoWeeks(dates);
   const weekNum = Math.floor((date - 1) / 7);
-  const week = weeks[weekNum];
 
+  const [weekIndex, setWeekIndex] = useState(weekNum);
   const [modalDate, setModalDate] = useState("");
+
+  const updateWeekIndex = (value: number): void => {
+    const newWeekIndex = (weekIndex + value) % weeks.length;
+    setWeekIndex(newWeekIndex);
+  };
 
   const openModal = (date: string) => {
     setModalDate(date);
@@ -31,15 +37,31 @@ const WeekDisplay = () => {
     setModalDate("");
   };
 
+  // Move week-heading styles to new component
+
   return (
     <main>
-      <h2>
+      <h2 className="week-heading">
+        <NavButton
+          direction="left"
+          showButton={weekIndex > 0}
+          updateIndex={updateWeekIndex}
+        />
         <Link to={`/month-display/${month.index}`}>
-          {month.name} {year} : Week {weekNum + 1}
+          {month.name} {year} : Week {weekIndex + 1}
         </Link>
+        <NavButton
+          direction="right"
+          showButton={weekIndex < weeks.length - 1}
+          updateIndex={updateWeekIndex}
+        />
       </h2>
       <h3></h3>
-      <Week week={week} monthIndex={month.index} openModal={openModal} />
+      <Week
+        week={weeks[weekIndex]}
+        monthIndex={month.index}
+        openModal={openModal}
+      />
       {modalDate.length !== 0 && (
         <Modal date={modalDate} closeModal={closeModal} />
       )}

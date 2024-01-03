@@ -7,12 +7,14 @@ interface NavButtonProps {
 }
 
 const NavButton = ({ direction, showButton, updateIndex }: NavButtonProps) => {
+  const value = direction === "left" ? -1 : 1;
+
   return (
     <div className={styles.navButton}>
       {showButton && (
         <button
           className={styles.navButton__button}
-          onClick={() => updateIndex(1)}
+          onClick={() => updateIndex(value)}
         >
           <img
             className={styles.navButton__icon}
