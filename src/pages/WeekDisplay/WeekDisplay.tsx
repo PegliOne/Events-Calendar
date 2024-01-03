@@ -39,7 +39,7 @@ const WeekDisplay = () => {
         </Link>
       </h2>
       <h3></h3>
-      <Week week={week} openModal={openModal} />
+      <Week week={week} monthIndex={month.index} openModal={openModal} />
       {modalDate.length !== 0 && (
         <Modal date={modalDate} closeModal={closeModal} />
       )}

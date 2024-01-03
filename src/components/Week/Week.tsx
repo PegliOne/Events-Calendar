@@ -4,16 +4,15 @@ import { formatDate } from "../../utils/date-utils";
 
 interface DayHeadingProps {
   week: number[];
+  monthIndex: number;
   openModal: (value: string) => void;
 }
 
-const Week = ({ week, openModal }: DayHeadingProps) => {
+const Week = ({ week, monthIndex, openModal }: DayHeadingProps) => {
   const today = new Date();
   const currentDate = today.getDate();
 
-  // Fix isCurrentMonth, MonthIndex and isMonthDisplay hard-coding
-
-  const isCurrentMonth = true;
+  const isCurrentMonth = monthIndex === today.getMonth();
 
   return (
     <section className={styles.week}>
@@ -21,7 +20,7 @@ const Week = ({ week, openModal }: DayHeadingProps) => {
         <Day
           key={date}
           date={formatDate(date)}
-          monthIndex={11}
+          monthIndex={monthIndex}
           hasCurrentDate={date === currentDate && isCurrentMonth}
           isMonthDisplay={true}
           openModal={() => openModal(formatDate(date))}
