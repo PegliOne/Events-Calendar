@@ -1,14 +1,9 @@
 import Week from "../../components/Week/Week";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { splitIntoWeeks } from "../../utils/week-utils";
-import {
-  getMonthData,
-  getCurrentMonth,
-  getMonthDates,
-  setMonthAndDate,
-} from "../../utils/month-utils";
+import { getMonthDates, setMonthAndDate } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 import NavButton from "../../components/NavButton/NavButton";
 

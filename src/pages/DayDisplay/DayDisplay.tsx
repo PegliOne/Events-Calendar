@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
-import { formatDate } from "../../utils/date-utils";
-import {
-  getCurrentMonth,
-  getMonthData,
-  setMonthAndDate,
-} from "../../utils/month-utils";
+import { setMonthAndDate } from "../../utils/month-utils";
 
 const DayDisplay = () => {
   const today = new Date();
