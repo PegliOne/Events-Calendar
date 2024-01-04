@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
 import { setMonthAndDate } from "../../utils/month-utils";
+import { getCurrentYear } from "../../utils/year-utils";
 
 const DayDisplay = () => {
   const today = new Date();
   const currentDate = today.getDate();
+  const year = getCurrentYear();
 
   const { month, date } = setMonthAndDate();
 
@@ -17,6 +19,8 @@ const DayDisplay = () => {
     setDisplayedDate(newDate);
   };
 
+  const isCurrentMonth = month.index === today.getMonth();
+
   return (
     <main>
       <DayHeading
@@ -24,6 +28,7 @@ const DayDisplay = () => {
         monthIndex={month.index}
         monthName={month.name}
         numberOfDays={month.numberOfDays}
+        year={year}
         updateDate={updateDate}
       />
       <Link to={`/week-display/${month.index}/${displayedDate}`}>
@@ -32,7 +37,7 @@ const DayDisplay = () => {
       <Day
         key={displayedDate}
         monthIndex={month.index}
-        hasCurrentDate={displayedDate === currentDate}
+        hasCurrentDate={displayedDate === currentDate && isCurrentMonth}
       />
     </main>
   );

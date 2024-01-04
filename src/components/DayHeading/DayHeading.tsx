@@ -8,6 +8,7 @@ interface DayHeadingProps {
   monthIndex: number;
   monthName: string;
   numberOfDays: number;
+  year: number;
   updateDate: (value: number) => void;
 }
 
@@ -16,6 +17,7 @@ const DayHeading = ({
   monthIndex,
   monthName,
   numberOfDays,
+  year,
   updateDate,
 }: DayHeadingProps) => {
   return (
@@ -26,7 +28,7 @@ const DayHeading = ({
         updateIndex={() => updateDate(-1)}
       />
       <Link to={`/month-display/${monthIndex}`}>
-        {ordinal(date)} {monthName} 2023
+        {ordinal(date)} {monthName} {year}
       </Link>
       <NavButton
         direction="right"
