@@ -1,11 +1,10 @@
 import Week from "../../components/Week/Week";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { splitIntoWeeks } from "../../utils/week-utils";
 import { getMonthDates, setMonthAndDate } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
-import NavButton from "../../components/NavButton/NavButton";
+import WeekHeading from "../../components/WeekHeading/WeekHeading";
 
 const WeekDisplay = () => {
   const year = getCurrentYear();
@@ -32,25 +31,16 @@ const WeekDisplay = () => {
     setModalDate("");
   };
 
-  // Move week-heading styles to new component
-
   return (
     <main>
-      <h2 className="week-heading">
-        <NavButton
-          direction="left"
-          showButton={weekIndex > 0}
-          updateIndex={updateWeekIndex}
-        />
-        <Link to={`/month-display/${month.index}`}>
-          {month.name} {year} : Week {weekIndex + 1}
-        </Link>
-        <NavButton
-          direction="right"
-          showButton={weekIndex < weeks.length - 1}
-          updateIndex={updateWeekIndex}
-        />
-      </h2>
+      <WeekHeading
+        weekIndex={weekIndex}
+        monthIndex={month.index}
+        monthName={month.name}
+        monthWeekCount={weeks.length}
+        year={year}
+        updateWeekIndex={updateWeekIndex}
+      />
       <h3></h3>
       <Week
         week={weeks[weekIndex]}
