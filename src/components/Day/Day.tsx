@@ -24,7 +24,11 @@ const Day = ({
     dayClasses += ` ${styles.day_current}`;
   }
 
-  const isWeekStartDate = date % 7 === 1;
+  let isWeekStartDate = false;
+
+  if (date) {
+    isWeekStartDate = Number(date) % 7 === 1;
+  }
 
   return (
     <section className={dayClasses} onClick={openModal}>

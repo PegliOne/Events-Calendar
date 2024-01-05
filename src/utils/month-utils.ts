@@ -34,12 +34,34 @@ export const setMonthAndDate = () => {
   let date = Number(useParams().date);
   let monthIndex = Number(useParams().monthIndex);
 
-  if (!(date && monthIndex)) {
-    const today = new Date();
-    date = today.getDate();
-    monthIndex = getCurrentMonth().index;
+  // If either value is missing return current month and date
+
+  if (!(String(date) && String(monthIndex))) {
+    return getCurrentMonthAndDate();
   }
 
-  const month = getMonthData(monthIndex);
+  // If both values are present, ensure they are valid
+
+  const isValidMonthIndex = monthIndex >= 0 && monthIndex < 12;
+
+  if (isValidMonthIndex) {
+    const month = getMonthData(monthIndex);
+    const isValidDate = date >= 0 && date <= month.dayCount;
+    if (isValidDate) {
+      return { month: month, date: date };
+    } else {
+      return getCurrentMonthAndDate();
+    }
+  }
+
+  // Otherwise return current month and date
+
+  return getCurrentMonthAndDate();
+};
+
+const getCurrentMonthAndDate = () => {
+  const month = getCurrentMonth();
+  const today = new Date();
+  const date = today.getDate();
   return { month: month, date: date };
 };

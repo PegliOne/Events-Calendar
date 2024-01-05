@@ -10,8 +10,15 @@ const MonthDisplay = () => {
   const currentMonth = getCurrentMonth();
   const year = getCurrentYear();
 
-  const paramsIndex = useParams().index;
+  let paramsIndex = useParams().index;
+
   let index = Number(paramsIndex ?? currentMonth.index);
+
+  // Set index to current month index if it is invalid
+
+  if (index < 0 || index > 11) {
+    index = currentMonth.index;
+  }
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");
