@@ -15,7 +15,7 @@ const DayDisplay = () => {
   const [displayedDate, setDisplayedDate] = useState(date);
 
   const updateDate = (value: number): void => {
-    let newDate = (displayedDate + value) % (month.numberOfDays + 1);
+    let newDate = (displayedDate + value) % (month.dayCount + 1);
     setDisplayedDate(newDate);
   };
 
@@ -27,7 +27,7 @@ const DayDisplay = () => {
         date={displayedDate}
         monthIndex={month.index}
         monthName={month.name}
-        numberOfDays={month.numberOfDays}
+        monthDayCount={month.dayCount}
         year={year}
         updateDate={updateDate}
       />

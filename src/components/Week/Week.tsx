@@ -22,7 +22,7 @@ const Week = ({ week, monthIndex, openModal }: DayHeadingProps) => {
           date={formatDate(date)}
           monthIndex={monthIndex}
           hasCurrentDate={date === currentDate && isCurrentMonth}
-          isMonthDisplay={true}
+          showDate={true}
           openModal={() => openModal(formatDate(date))}
         />
       ))}

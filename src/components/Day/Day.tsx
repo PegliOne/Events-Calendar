@@ -4,6 +4,7 @@ import styles from "./Day.module.scss";
 interface DayProps {
   date?: string;
   monthIndex: number;
+  showDate?: boolean;
   hasCurrentDate?: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
@@ -12,6 +13,7 @@ interface DayProps {
 const Day = ({
   date,
   monthIndex,
+  showDate,
   hasCurrentDate,
   isMonthDisplay,
   openModal,
@@ -22,15 +24,27 @@ const Day = ({
     dayClasses += ` ${styles.day_current}`;
   }
 
+  const isWeekStartDate = date % 7 === 1;
+
   return (
     <section className={dayClasses} onClick={openModal}>
-      {isMonthDisplay && (
-        <Link
-          className={styles.day__date}
-          to={`/day-display/${monthIndex}/${date}`}
-        >
-          {date}
-        </Link>
+      {showDate && (
+        <>
+          <Link
+            className={styles.day__date}
+            to={`/day-display/${monthIndex}/${date}`}
+          >
+            {date}
+          </Link>
+          {isMonthDisplay && isWeekStartDate && (
+            <Link
+              className={styles.day__weekLink}
+              to={`/week-display/${monthIndex}/${date}`}
+            >
+              Show Week
+            </Link>
+          )}
+        </>
       )}
     </section>
   );

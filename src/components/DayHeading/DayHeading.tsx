@@ -7,7 +7,7 @@ interface DayHeadingProps {
   date: number;
   monthIndex: number;
   monthName: string;
-  numberOfDays: number;
+  monthDayCount: number;
   year: number;
   updateDate: (value: number) => void;
 }
@@ -16,7 +16,7 @@ const DayHeading = ({
   date,
   monthIndex,
   monthName,
-  numberOfDays,
+  monthDayCount,
   year,
   updateDate,
 }: DayHeadingProps) => {
@@ -32,7 +32,7 @@ const DayHeading = ({
       </Link>
       <NavButton
         direction="right"
-        showButton={date < numberOfDays}
+        showButton={date < monthDayCount}
         updateIndex={() => updateDate(1)}
       />
     </h2>

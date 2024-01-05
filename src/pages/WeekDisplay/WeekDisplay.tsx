@@ -10,12 +10,12 @@ const WeekDisplay = () => {
   const year = getCurrentYear();
 
   const { month, date } = setMonthAndDate();
-  const dates = getMonthDates(month.numberOfDays);
+  const dates = getMonthDates(month.dayCount);
 
   const weeks = splitIntoWeeks(dates);
-  const weekNum = Math.floor((date - 1) / 7);
+  const currentWeekIndex = Math.floor((date - 1) / 7);
 
-  const [weekIndex, setWeekIndex] = useState(weekNum);
+  const [weekIndex, setWeekIndex] = useState(currentWeekIndex);
   const [modalDate, setModalDate] = useState("");
 
   const updateWeekIndex = (value: number): void => {

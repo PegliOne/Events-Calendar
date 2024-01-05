@@ -5,21 +5,16 @@ import { getMonthDates } from "../../utils/month-utils";
 
 interface MonthProps {
   index: number;
-  numberOfDays: number;
+  dayCount: number;
   isCurrentMonth: boolean;
   openModal: (value: string) => void;
 }
 
-const Month = ({
-  index,
-  numberOfDays,
-  isCurrentMonth,
-  openModal,
-}: MonthProps) => {
+const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
   const today = new Date();
   const currentDate = today.getDate();
 
-  const dates = getMonthDates(numberOfDays);
+  const dates = getMonthDates(dayCount);
 
   return (
     <>
@@ -30,6 +25,7 @@ const Month = ({
             date={formatDate(date)}
             monthIndex={index}
             hasCurrentDate={date === currentDate && isCurrentMonth}
+            showDate={true}
             isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}
           />

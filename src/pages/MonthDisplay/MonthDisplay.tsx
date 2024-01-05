@@ -40,7 +40,7 @@ const MonthDisplay = () => {
       />
       <Month
         index={month.index}
-        numberOfDays={month.numberOfDays}
+        dayCount={month.dayCount}
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
       />
