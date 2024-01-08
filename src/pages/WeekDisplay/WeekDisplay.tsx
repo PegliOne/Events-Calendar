@@ -44,6 +44,7 @@ const WeekDisplay = () => {
       <h3></h3>
       <Week
         week={weeks[weekIndex]}
+        isLastWeek={weekIndex >= weeks.length - 1}
         monthIndex={month.index}
         openModal={openModal}
       />
