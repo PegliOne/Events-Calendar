@@ -9,7 +9,7 @@ import WeekHeading from "../../components/WeekHeading/WeekHeading";
 const WeekDisplay = () => {
   const year = getCurrentYear();
 
-  const { month, date } = setMonthAndDate();
+  const { month, date } = setMonthAndDate(year);
   const dates = getMonthDates(month.dayCount);
 
   const weeks = splitIntoWeeks(dates);

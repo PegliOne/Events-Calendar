@@ -10,7 +10,7 @@ const DayDisplay = () => {
   const currentDate = today.getDate();
   const year = getCurrentYear();
 
-  const { month, date } = setMonthAndDate();
+  const { month, date } = setMonthAndDate(year);
 
   const [displayedDate, setDisplayedDate] = useState(date);
 

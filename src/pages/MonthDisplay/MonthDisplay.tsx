@@ -23,7 +23,7 @@ const MonthDisplay = () => {
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");
 
-  const month = getMonthData(monthIndex);
+  const month = getMonthData(monthIndex, year);
 
   const updateMonthIndex = (value: number): void => {
     const newMonthIndex = (monthIndex + value) % 12;

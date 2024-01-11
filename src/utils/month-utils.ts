@@ -3,14 +3,18 @@ import { useParams } from "react-router-dom";
 
 export const getCurrentMonth = () => {
   const today = new Date();
-  let index = today.getMonth();
-  return getMonthData(index);
+  const index = today.getMonth();
+  const year = today.getFullYear();
+  return getMonthData(index, year);
 };
 
-export const getMonthData = (index: number) => {
+export const getMonthData = (index: number, year: number) => {
+  const leapDate = new Date(year, 1, 29);
+  const februaryDayCount = leapDate.getDate() === 29 ? 29 : 28;
+
   const months = [
     { index: 0, name: "January", dayCount: 31 },
-    { index: 1, name: "February", dayCount: 28 },
+    { index: 1, name: "February", dayCount: februaryDayCount },
     { index: 2, name: "March", dayCount: 31 },
     { index: 3, name: "April", dayCount: 30 },
     { index: 4, name: "May", dayCount: 31 },
@@ -30,7 +34,7 @@ export const getMonthDates = (dayCount: number) => {
   return _.range(1, dayCount + 1);
 };
 
-export const setMonthAndDate = () => {
+export const setMonthAndDate = (year: number) => {
   let date = Number(useParams().date);
   let monthIndex = Number(useParams().monthIndex);
 
@@ -45,7 +49,7 @@ export const setMonthAndDate = () => {
   const isValidMonthIndex = monthIndex >= 0 && monthIndex < 12;
 
   if (isValidMonthIndex) {
-    const month = getMonthData(monthIndex);
+    const month = getMonthData(monthIndex, year);
     const isValidDate = date >= 0 && date <= month.dayCount;
     if (isValidDate) {
       return { month: month, date: date };
