@@ -1,32 +1,25 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
-import { formatDate } from "../../utils/date-utils";
-import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
+import { setMonthAndDate } from "../../utils/month-utils";
+import { getCurrentYear } from "../../utils/year-utils";
 
 const DayDisplay = () => {
   const today = new Date();
   const currentDate = today.getDate();
-  const currentMonth = getCurrentMonth();
+  const year = getCurrentYear();
 
-  let date = Number(useParams().date);
-  let monthIndex = Number(useParams().monthIndex);
-
-  if (!(date && monthIndex)) {
-    date = today.getDate();
-    monthIndex = currentMonth.index;
-  }
-
-  const month = getMonthData(monthIndex);
-  const maxDate = month.numberOfDays;
+  const { month, date } = setMonthAndDate(year);
 
   const [displayedDate, setDisplayedDate] = useState(date);
 
   const updateDate = (value: number): void => {
-    let newDate = (displayedDate + value) % (maxDate + 1);
+    let newDate = (displayedDate + value) % (month.dayCount + 1);
     setDisplayedDate(newDate);
   };
+
+  const isCurrentMonth = month.index === today.getMonth();
 
   return (
     <main>
@@ -34,16 +27,17 @@ const DayDisplay = () => {
         date={displayedDate}
         monthIndex={month.index}
         monthName={month.name}
-        numberOfDays={month.numberOfDays}
+        monthDayCount={month.dayCount}
+        year={year}
         updateDate={updateDate}
       />
-      <Link to={`/week-display/${monthIndex}/${displayedDate}`}>
+      <Link to={`/week-display/${month.index}/${displayedDate}`}>
         Show Full Week
       </Link>
       <Day
         key={displayedDate}
         monthIndex={month.index}
-        isHighlighted={displayedDate === currentDate}
+        hasCurrentDate={displayedDate === currentDate && isCurrentMonth}
       />
     </main>
   );

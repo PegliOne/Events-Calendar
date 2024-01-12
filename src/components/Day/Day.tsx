@@ -4,7 +4,8 @@ import styles from "./Day.module.scss";
 interface DayProps {
   date?: string;
   monthIndex: number;
-  isHighlighted?: boolean;
+  showDate?: boolean;
+  hasCurrentDate?: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
 }
@@ -12,25 +13,42 @@ interface DayProps {
 const Day = ({
   date,
   monthIndex,
-  isHighlighted,
+  showDate,
+  hasCurrentDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
   let dayClasses = styles.day;
 
-  if (isHighlighted) {
+  if (hasCurrentDate) {
     dayClasses += ` ${styles.day_current}`;
+  }
+
+  let isWeekStartDate = false;
+
+  if (date) {
+    isWeekStartDate = Number(date) % 7 === 1;
   }
 
   return (
     <section className={dayClasses} onClick={openModal}>
-      {isMonthDisplay && (
-        <Link
-          className={styles.day__date}
-          to={`/day-display/${monthIndex}/${date}`}
-        >
-          {date}
-        </Link>
+      {showDate && (
+        <>
+          <Link
+            className={styles.day__date}
+            to={`/day-display/${monthIndex}/${date}`}
+          >
+            {date}
+          </Link>
+          {isMonthDisplay && isWeekStartDate && (
+            <Link
+              className={styles.day__weekLink}
+              to={`/week-display/${monthIndex}/${date}`}
+            >
+              Show Week
+            </Link>
+          )}
+        </>
       )}
     </section>
   );

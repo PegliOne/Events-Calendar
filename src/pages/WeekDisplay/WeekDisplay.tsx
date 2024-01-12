@@ -1,34 +1,27 @@
-import * as _ from "underscore";
 import Week from "../../components/Week/Week";
 import Modal from "../../components/Modal/Modal";
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
 import { splitIntoWeeks } from "../../utils/week-utils";
-import { getMonthData, getCurrentMonth } from "../../utils/month-utils";
+import { getMonthDates, setMonthAndDate } from "../../utils/month-utils";
+import { getCurrentYear } from "../../utils/year-utils";
+import WeekHeading from "../../components/WeekHeading/WeekHeading";
 
 const WeekDisplay = () => {
-  const today = new Date();
-  const year = today.getFullYear();
+  const year = getCurrentYear();
 
-  const currentMonth = getCurrentMonth();
-
-  let date = Number(useParams().date);
-  let monthIndex = Number(useParams().monthIndex);
-
-  if (!(date && monthIndex)) {
-    date = today.getDate();
-    monthIndex = currentMonth.index;
-  }
-
-  const month = getMonthData(monthIndex);
-
-  const dates = _.range(1, month.numberOfDays + 1);
+  const { month, date } = setMonthAndDate(year);
+  const dates = getMonthDates(month.dayCount);
 
   const weeks = splitIntoWeeks(dates);
-  const weekNum = Math.floor((date - 1) / 7);
-  const week = weeks[weekNum];
+  const currentWeekIndex = Math.floor((date - 1) / 7);
 
+  const [weekIndex, setWeekIndex] = useState(currentWeekIndex);
   const [modalDate, setModalDate] = useState("");
+
+  const updateWeekIndex = (value: number): void => {
+    const newWeekIndex = (weekIndex + value) % weeks.length;
+    setWeekIndex(newWeekIndex);
+  };
 
   const openModal = (date: string) => {
     setModalDate(date);
@@ -40,13 +33,21 @@ const WeekDisplay = () => {
 
   return (
     <main>
-      <h2>
-        <Link to={`/month-display/${month.index}`}>
-          {month.name} {year} : Week {weekNum + 1}
-        </Link>
-      </h2>
+      <WeekHeading
+        weekIndex={weekIndex}
+        monthIndex={month.index}
+        monthName={month.name}
+        monthWeekCount={weeks.length}
+        year={year}
+        updateWeekIndex={updateWeekIndex}
+      />
       <h3></h3>
-      <Week week={week} openModal={openModal} />
+      <Week
+        week={weeks[weekIndex]}
+        isLastWeek={weekIndex >= weeks.length - 1}
+        monthIndex={month.index}
+        openModal={openModal}
+      />
       {modalDate.length !== 0 && (
         <Modal date={modalDate} closeModal={closeModal} />
       )}

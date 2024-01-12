@@ -2,6 +2,9 @@
 @use "./pallete.scss";
 
 @mixin cell-styles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
   height: 180px;
   padding: 8px 12px;

@@ -4,19 +4,26 @@ import { getCurrentMonth, getMonthData } from "../../utils/month-utils";
 import MonthHeading from "../../components/MonthHeading/MonthHeading";
 import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
+import { getCurrentYear } from "../../utils/year-utils";
 
 const MonthDisplay = () => {
-  const today = new Date();
-  const year = today.getFullYear();
   const currentMonth = getCurrentMonth();
+  const year = getCurrentYear();
 
-  const defaultIndex = useParams().index;
-  let index = Number(defaultIndex ?? today.getMonth());
+  let paramsIndex = useParams().index;
+
+  let index = Number(paramsIndex ?? currentMonth.index);
+
+  // Set index to current month index if it is invalid
+
+  if (index < 0 || index > 11) {
+    index = currentMonth.index;
+  }
 
   const [monthIndex, setMonthIndex] = useState(index);
   const [modalDate, setModalDate] = useState("");
 
-  const month = getMonthData(monthIndex);
+  const month = getMonthData(monthIndex, year);
 
   const updateMonthIndex = (value: number): void => {
     const newMonthIndex = (monthIndex + value) % 12;
@@ -40,7 +47,7 @@ const MonthDisplay = () => {
       />
       <Month
         index={month.index}
-        numberOfDays={month.numberOfDays}
+        dayCount={month.dayCount}
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
       />

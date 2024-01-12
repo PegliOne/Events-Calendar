@@ -1,25 +1,20 @@
-import * as _ from "underscore";
 import Day from "../Day/Day";
 import styles from "./Month.module.scss";
 import { formatDate } from "../../utils/date-utils";
+import { getMonthDates } from "../../utils/month-utils";
 
 interface MonthProps {
   index: number;
-  numberOfDays: number;
+  dayCount: number;
   isCurrentMonth: boolean;
   openModal: (value: string) => void;
 }
 
-const Month = ({
-  index,
-  numberOfDays,
-  isCurrentMonth,
-  openModal,
-}: MonthProps) => {
+const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
   const today = new Date();
-  const currentDay = today.getDate();
+  const currentDate = today.getDate();
 
-  const dates = _.range(1, numberOfDays + 1);
+  const dates = getMonthDates(dayCount);
 
   return (
     <>
@@ -29,7 +24,8 @@ const Month = ({
             key={date}
             date={formatDate(date)}
             monthIndex={index}
-            isHighlighted={date === currentDay && isCurrentMonth}
+            hasCurrentDate={date === currentDate && isCurrentMonth}
+            showDate={true}
             isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}
           />
