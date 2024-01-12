@@ -1,5 +1,7 @@
 # Event Calendar
 
+Hosted Site: https://teal-cranachan-824867.netlify.app/
+
 ## Summary
 
 A calendar app for tracking events created using TypeScript.js and React.js. Features include day, week and month displays.
