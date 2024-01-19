@@ -15,7 +15,7 @@ const EventForm = () => {
       <Input type="datetime-local" name="endTime" isRequired={true} />
       <Select
         name="location"
-        options={["online", "in-person"]}
+        options={["online", "inPerson"]}
         isRequired={true}
       />
       <Input type="text" name="address" placeholder="123 Example Street" />
