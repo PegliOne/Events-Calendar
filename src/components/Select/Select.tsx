@@ -1,22 +1,31 @@
+import { formatLabel } from "../../utils/form-utils";
 import styles from "./Select.module.scss";
 
 interface SelectProps {
-  label: string;
   name: string;
   options: string[];
+  isRequired?: boolean;
 }
 
-const Select = ({ label, name, options }: SelectProps) => {
+const Select = ({ name, options, isRequired }: SelectProps) => {
   const id = name + "Select";
 
   return (
     <div className={styles.form__field}>
       <label className={styles.field__label} htmlFor={id}>
-        {label}:
+        {formatLabel(name)}:
       </label>
-      <select className={styles.field__select} id={id} name={name}>
+      <select
+        className={styles.field__select}
+        id={id}
+        name={name}
+        required={isRequired}
+      >
+        {!isRequired && <option value="">Select an Option</option>}
         {options.map((option) => (
-          <option value={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </select>
     </div>

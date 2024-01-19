@@ -7,34 +7,20 @@ const EventForm = () => {
     <form className={styles.modal__form}>
       <Input
         type="text"
-        label="Event Name"
         name="eventName"
         placeholder="Christmas Party"
+        isRequired={true}
       />
-      <Input type="datetime-local" label="Start Time" name="startTime" />
-      <Input type="datetime-local" label="End Time" name="endTime" />
+      <Input type="datetime-local" name="startTime" isRequired={true} />
+      <Input type="datetime-local" name="endTime" isRequired={true} />
       <Select
-        label="Location"
         name="location"
         options={["online", "in-person"]}
+        isRequired={true}
       />
-      <Input
-        type="text"
-        label="Address"
-        name="address"
-        placeholder="123 Fake Street, Fake Suburb"
-      />
-      <Input
-        type="url"
-        label="URL"
-        name="url"
-        placeholder="https://www.url.com"
-      />
-      <Select
-        label="Label"
-        name="label"
-        options={["work", "social", "personal"]}
-      />
+      <Input type="text" name="address" placeholder="123 Example Street" />
+      <Input type="url" name="url" placeholder="https://www.url.com" />
+      <Select name="label" options={["work", "social", "personal"]} />
     </form>
   );
 };
