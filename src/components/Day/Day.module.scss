@@ -49,6 +49,10 @@ main {
       }
     }
 
+    &_bottomLeft {
+      border-bottom-left-radius: 26px;
+    }
+
     .day__date {
       justify-content: flex-start;
       margin: 0;
@@ -68,6 +72,9 @@ main {
     padding: 16px 20px;
     font-size: 1.2rem;
     text-align: left;
+    border-width: 2px;
+    border-bottom-left-radius: 26px;
+    border-bottom-right-radius: 26px;
 
     @include breakpoints.tablet {
       width: 440px;

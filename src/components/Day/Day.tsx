@@ -6,6 +6,7 @@ interface DayProps {
   monthIndex: number;
   showDate?: boolean;
   hasCurrentDate?: boolean;
+  hasBottomLeftDate: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
 }
@@ -15,6 +16,7 @@ const Day = ({
   monthIndex,
   showDate,
   hasCurrentDate,
+  hasBottomLeftDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
@@ -22,6 +24,10 @@ const Day = ({
 
   if (hasCurrentDate) {
     dayClasses += ` ${styles.day_current}`;
+  }
+
+  if (hasBottomLeftDate) {
+    dayClasses += ` ${styles.day_bottomLeft}`;
   }
 
   let isWeekStartDate = false;
