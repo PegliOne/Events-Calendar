@@ -5,10 +5,9 @@
   flex-direction: column;
   position: absolute;
   top: 30%;
-  left: 28%;
-  width: 42%;
-  height: 400px;
-  padding: 12px 20px;
+  left: 35%;
+  width: 28%;
+  padding: 20px;
   color: pallete.$secondary-text-colour;
   font-size: 1.2rem;
   font-weight: 600;
@@ -20,6 +19,13 @@
   .modal__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .header__heading {
+      margin: 0;
+      font-size: 1.3rem;
+    }
 
     .header__closeButton {
       position: relative;

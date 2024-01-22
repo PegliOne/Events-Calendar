@@ -1,0 +1,20 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.input {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
+
+  .input__label {
+    margin-right: 8px;
+  }
+
+  .input__field {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid pallete.$secondary-text-colour;
+    font-size: 1.2rem;
+    text-align: center;
+    outline: none;
+  }
+}

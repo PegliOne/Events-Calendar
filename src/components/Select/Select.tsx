@@ -16,12 +16,12 @@ const Select = ({ name, options, isRequired }: SelectProps) => {
   };
 
   return (
-    <div className={styles.form__field}>
-      <label className={styles.field__label} htmlFor={id}>
+    <div className={styles.select}>
+      <label className={styles.select__label} htmlFor={id}>
         {formatLabel(name)}:
       </label>
       <select
-        className={styles.field__select}
+        className={styles.select__field}
         id={id}
         name={name}
         required={isRequired}

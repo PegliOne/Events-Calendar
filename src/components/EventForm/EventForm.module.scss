@@ -1,0 +1,28 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.form {
+  .form__error {
+    margin-bottom: 12px;
+    color: pallete.$error-text-colour;
+  }
+
+  .form__submit {
+    display: flex;
+    justify-content: center;
+
+    .submit__button {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background-color: pallete.$secondary-background-colour;
+      border: 2px solid pallete.$primary-text-colour;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+
+      &:hover {
+        background-color: pallete.$hover-background-colour;
+        cursor: pointer;
+      }
+    }
+  }
+}

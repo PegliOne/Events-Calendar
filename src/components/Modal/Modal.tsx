@@ -10,13 +10,10 @@ const Modal = ({ date, closeModal }: ModalProps) => {
   return (
     <section className={styles.modal}>
       <div className={styles.modal__header}>
-        <span className={styles.header__date}>{date}</span>
+        <h3 className={styles.header__heading}>{date}</h3>
         <button className={styles.header__closeButton} onClick={closeModal}>
           x
         </button>
-      </div>
-      <div className={styles.modal__error}>
-        Error: Event dates cannot be in the past
       </div>
       <EventForm />
     </section>

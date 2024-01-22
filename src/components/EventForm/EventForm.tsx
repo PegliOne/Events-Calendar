@@ -4,7 +4,10 @@ import Select from "../Select/Select";
 
 const EventForm = () => {
   return (
-    <form className={styles.modal__form}>
+    <form className={styles.form}>
+      <div className={styles.form__error}>
+        Error: Event start or end times cannot be in the past
+      </div>
       <Input
         type="text"
         name="eventName"
@@ -21,6 +24,11 @@ const EventForm = () => {
       <Input type="text" name="address" placeholder="123 Example Street" />
       <Input type="url" name="url" placeholder="https://www.url.com" />
       <Select name="label" options={["work", "social", "personal"]} />
+      <div className={styles.form__submit}>
+        <button className={styles.submit__button} type="submit">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

@@ -12,12 +12,12 @@ const Input = ({ type, name, placeholder, isRequired }: InputProps) => {
   const id = name + "Input";
 
   return (
-    <div className={styles.form__field}>
-      <label className={styles.field__label} htmlFor={id}>
+    <div className={styles.input}>
+      <label className={styles.input__label} htmlFor={id}>
         {formatLabel(name)}:
       </label>
       <input
-        className={styles.field__input}
+        className={styles.input__field}
         type={type}
         id={id}
         name={name}
