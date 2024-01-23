@@ -1,12 +1,11 @@
 import styles from "./EventForm.module.scss";
 import { useRef } from "react";
+import { addEvent } from "../../services/event-service";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
 
 const EventForm = () => {
   const formRef = useRef(null);
-
-  const events = new Array();
 
   const submitForm = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -24,8 +23,7 @@ const EventForm = () => {
       label: eventData.get("label"),
     };
 
-    events.push(newEvent);
-    console.log(events);
+    addEvent(newEvent);
   };
 
   return (
