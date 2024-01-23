@@ -13,6 +13,38 @@ const EventForm = () => {
     const eventForm = formRef.current!;
     const eventData = new FormData(eventForm);
 
+    const currentTime = new Date();
+
+    const startTimeFormValue = eventData.get("startTime");
+    const startTime = Date.parse(String(startTimeFormValue));
+
+    const endTimeFormValue = eventData.get("endTime");
+    const endTime = Date.parse(String(endTimeFormValue));
+
+    // Move Validations to separate functions
+    // Add minLength and maxLength values
+    // Add min and max values for dates
+
+    // Validate start time after present time
+
+    if (currentTime.getTime() > startTime) {
+      console.log("Error: Event start time cannot be in the past");
+      return;
+    }
+
+    // Validate end date at least 15 minutes after start date
+
+    const minEventTimeInSeconds = 15 * 60;
+
+    if (startTime + minEventTimeInSeconds > endTime) {
+      console.log(
+        `Error: Event end time must be at least ${
+          minEventTimeInSeconds / 60
+        } minutes after event start time`
+      );
+      return;
+    }
+
     const newEvent = {
       eventName: eventData.get("eventName"),
       startTime: eventData.get("startTime"),
@@ -24,6 +56,7 @@ const EventForm = () => {
     };
 
     addEvent(newEvent);
+    console.log("Event Created");
   };
 
   return (
