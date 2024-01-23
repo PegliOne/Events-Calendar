@@ -21,7 +21,7 @@ const EventForm = () => {
     const endTimeFormValue = eventData.get("endTime");
     const endTime = Date.parse(String(endTimeFormValue));
 
-    // Move Validations to separate functions
+    // Move validation logic to separate functions
     // Add minLength and maxLength values
     // Add min and max values for dates
 
