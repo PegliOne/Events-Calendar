@@ -7,7 +7,7 @@
   top: 30%;
   left: 35%;
   width: 28%;
-  padding: 20px;
+  padding: 24px;
   color: pallete.$secondary-text-colour;
   font-size: 1.2rem;
   font-weight: 600;
@@ -20,19 +20,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 
     .header__heading {
+      flex-grow: 1;
       margin: 0;
-      font-size: 1.3rem;
+      text-align: center;
+      font-size: 1.6rem;
+      text-decoration: underline;
     }
 
     .header__closeButton {
       position: relative;
-      top: -4px;
+      top: -6px;
       height: min-content;
       color: pallete.$secondary-text-colour;
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1;
 
       &:hover {

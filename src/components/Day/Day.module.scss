@@ -19,6 +19,7 @@ main {
     height: 180px;
     padding-top: 8px;
     text-align: right;
+    transition: background-color 200ms;
 
     @include breakpoints.medium-desktop {
       height: 156px;
