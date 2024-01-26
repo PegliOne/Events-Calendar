@@ -1,11 +1,13 @@
 import styles from "./EventForm.module.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { addEvent } from "../../services/event-service";
 import Input from "../Input/Input";
 import Select from "../Select/Select";
 
 const EventForm = () => {
   const formRef = useRef(null);
+
+  const [error, setError] = useState("");
 
   const submitForm = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -28,7 +30,7 @@ const EventForm = () => {
     // Validate start time after present time
 
     if (currentTime.getTime() > startTime) {
-      console.log("Error: Event start time cannot be in the past");
+      setError("Error: Event start time cannot be in the past");
       return;
     }
 
@@ -37,10 +39,10 @@ const EventForm = () => {
     const minEventTimeInSeconds = 15 * 60;
 
     if (startTime + minEventTimeInSeconds > endTime) {
-      console.log(
-        `Error: Event end time must be at least ${
+      setError(
+        `Error: Event cannot end less than ${
           minEventTimeInSeconds / 60
-        } minutes after event start time`
+        } minutes after start time`
       );
       return;
     }
@@ -61,9 +63,7 @@ const EventForm = () => {
 
   return (
     <form className={styles.form} onSubmit={submitForm} ref={formRef}>
-      <div className={styles.form__error}>
-        Error: Event start or end times cannot be in the past
-      </div>
+      <div className={styles.form__error}>{error}</div>
       <Input
         type="text"
         name="eventName"

@@ -2,8 +2,10 @@
 
 .form {
   .form__error {
+    height: 52px;
     margin-bottom: 16px;
     color: pallete.$error-text-colour;
+    text-align: center;
     font-size: 1.1rem;
   }
 
