@@ -1,3 +1,4 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .form {
@@ -7,6 +8,12 @@
     color: pallete.$error-text-colour;
     text-align: center;
     font-size: 1.1rem;
+
+    @include breakpoints.small-desktop {
+      height: 40px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
   }
 
   .form__submit {
@@ -14,7 +21,7 @@
     justify-content: center;
 
     .submit__button {
-      margin-top: 12px;
+      margin-top: 36px;
       padding: 8px 12px;
       background-color: pallete.$secondary-background-colour;
       border: 2px solid pallete.$primary-text-colour;
@@ -22,6 +29,11 @@
       font-size: 1.2rem;
       font-weight: 600;
       transition: background-color 200ms;
+
+      @include breakpoints.small-desktop {
+        margin-top: 24px;
+        font-size: 1.1rem;
+      }
 
       &:hover {
         background-color: pallete.$hover-background-colour;

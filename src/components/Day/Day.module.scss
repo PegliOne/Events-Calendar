@@ -63,7 +63,20 @@ main {
 
     .day__weekLink {
       margin: 8px 0;
+      text-align: center;
       text-decoration: none;
+
+      @include breakpoints.small-desktop {
+        margin: 2px 0;
+      }
+
+      @include breakpoints.tablet {
+        font-size: 0.8rem;
+      }
+
+      @include breakpoints.mobile {
+        font-size: 0.6rem;
+      }
     }
   }
 
