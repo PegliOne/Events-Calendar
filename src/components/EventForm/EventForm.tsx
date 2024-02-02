@@ -9,6 +9,48 @@ const EventForm = () => {
 
   const [error, setError] = useState("");
 
+  const validateStartTime = (currentTime: Date, startTime: number) => {
+    if (currentTime.getTime() > startTime) {
+      setError("Error: Event start time cannot be in the past");
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateEndTime = (
+    startTime: number,
+    endTime: number,
+    minEventTimeInSeconds: number
+  ) => {
+    if (startTime + minEventTimeInSeconds > endTime) {
+      setError(
+        `Error: Event cannot end less than ${
+          minEventTimeInSeconds / 60
+        } minutes after start time`
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateEventData = (
+    currentTime: Date,
+    startTime: number,
+    endTime: number,
+    minEventTimeInSeconds: number
+  ) => {
+    const hasValidEndTime = validateEndTime(
+      startTime,
+      endTime,
+      minEventTimeInSeconds
+    );
+    const hasValidStartTime = validateStartTime(currentTime, startTime);
+
+    return hasValidStartTime && hasValidEndTime;
+  };
+
   const submitForm = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
@@ -23,29 +65,21 @@ const EventForm = () => {
     const endTimeFormValue = eventData.get("endTime");
     const endTime = Date.parse(String(endTimeFormValue));
 
-    // Move validation logic to separate functions
-    // Add minLength and maxLength values
-    // Add min and max values for dates
-
-    // Validate start time after present time
-
-    if (currentTime.getTime() > startTime) {
-      setError("Error: Event start time cannot be in the past");
-      return;
-    }
-
-    // Validate end date at least 15 minutes after start date
-
     const minEventTimeInSeconds = 15 * 60;
 
-    if (startTime + minEventTimeInSeconds > endTime) {
-      setError(
-        `Error: Event cannot end less than ${
-          minEventTimeInSeconds / 60
-        } minutes after start time`
-      );
+    const hasValidEventData = validateEventData(
+      currentTime,
+      startTime,
+      endTime,
+      minEventTimeInSeconds
+    );
+
+    if (!hasValidEventData) {
       return;
     }
+
+    // Add minLength and maxLength values
+    // Add min and max values for dates
 
     const newEvent = {
       eventName: eventData.get("eventName"),
