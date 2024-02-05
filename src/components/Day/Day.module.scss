@@ -21,22 +21,6 @@ main {
     text-align: right;
     transition: background-color 200ms;
 
-    @include breakpoints.medium-desktop {
-      height: 156px;
-    }
-
-    @include breakpoints.small-desktop {
-      height: 124px;
-    }
-
-    @include breakpoints.tablet {
-      height: 90px;
-    }
-
-    @include breakpoints.mobile {
-      height: 76px;
-    }
-
     &:hover {
       background-color: pallete.$hover-background-colour;
       cursor: pointer;

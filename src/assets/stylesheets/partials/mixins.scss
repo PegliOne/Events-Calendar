@@ -33,3 +33,13 @@
     font-size: 0.8rem;
   }
 }
+
+@mixin consistant-text-size {
+  @include breakpoints.tablet {
+    font-size: 1.2rem;
+  }
+
+  @include breakpoints.mobile {
+    font-size: 1.2rem;
+  }
+}

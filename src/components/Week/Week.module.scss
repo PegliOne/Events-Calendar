@@ -13,7 +13,12 @@
   margin-top: 32px;
 
   section {
+    @include mixins.consistant-text-size;
     width: 50%;
+
+    @include breakpoints.medium-desktop {
+      height: 180px;
+    }
   }
 
   &_lastWeek section {
@@ -22,6 +27,7 @@
 
   .week__notes {
     @include mixins.cell-styles;
+    @include mixins.consistant-text-size;
     flex-grow: 1;
     font-size: 1.3rem;
     text-align: center;
