@@ -6,7 +6,7 @@ interface DayProps {
   monthIndex: number;
   showDate?: boolean;
   hasCurrentDate?: boolean;
-  hasBottomLeftDate: boolean;
+  hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
   openModal?: () => void;
 }
