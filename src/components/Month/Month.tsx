@@ -25,6 +25,7 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
             date={formatDate(date)}
             monthIndex={index}
             hasCurrentDate={date === currentDate && isCurrentMonth}
+            hasBottomLeftDate={date === 29}
             showDate={true}
             isMonthDisplay={true}
             openModal={() => openModal(formatDate(date))}

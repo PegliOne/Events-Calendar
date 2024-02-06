@@ -1,0 +1,26 @@
+@use "../../assets/stylesheets/partials/breakpoints.scss";
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.input {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-family: Montserrat, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  .input__label {
+    margin-right: 8px;
+  }
+
+  .input__field {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid pallete.$secondary-text-colour;
+    font-size: 1.2rem;
+    text-align: center;
+    outline: none;
+
+    @include breakpoints.small-desktop {
+      font-size: 1.1rem;
+    }
+  }
+}

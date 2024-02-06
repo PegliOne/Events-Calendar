@@ -16,19 +16,19 @@ const WeekDisplay = () => {
   const currentWeekIndex = Math.floor((date - 1) / 7);
 
   const [weekIndex, setWeekIndex] = useState(currentWeekIndex);
-  const [modalDate, setModalDate] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const updateWeekIndex = (value: number): void => {
     const newWeekIndex = (weekIndex + value) % weeks.length;
     setWeekIndex(newWeekIndex);
   };
 
-  const openModal = (date: string) => {
-    setModalDate(date);
+  const openModal = () => {
+    setShowModal(true);
   };
 
   const closeModal = () => {
-    setModalDate("");
+    setShowModal(false);
   };
 
   return (
@@ -48,9 +48,7 @@ const WeekDisplay = () => {
         monthIndex={month.index}
         openModal={openModal}
       />
-      {modalDate.length !== 0 && (
-        <Modal date={modalDate} closeModal={closeModal} />
-      )}
+      {showModal && <Modal closeModal={closeModal} />}
     </main>
   );
 };

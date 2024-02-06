@@ -16,9 +16,11 @@ const Week = ({ week, isLastWeek, monthIndex, openModal }: DayHeadingProps) => {
   const isCurrentMonth = monthIndex === today.getMonth();
 
   let weekStyles = styles.week;
+  let weekNotesStyles = styles.week__notes;
 
   if (isLastWeek) {
     weekStyles += ` ${styles.week_lastWeek}`;
+    weekNotesStyles += ` ${styles.week__notes_lastWeek}`;
   }
 
   return (
@@ -29,11 +31,12 @@ const Week = ({ week, isLastWeek, monthIndex, openModal }: DayHeadingProps) => {
           date={formatDate(date)}
           monthIndex={monthIndex}
           hasCurrentDate={date === currentDate && isCurrentMonth}
+          hasBottomLeftDate={date % 7 === 4}
           showDate={true}
           openModal={() => openModal(formatDate(date))}
         />
       ))}
-      <section className={styles.week__notes}>Notes</section>
+      <section className={weekNotesStyles}>Notes</section>
     </section>
   );
 };

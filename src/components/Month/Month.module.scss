@@ -7,6 +7,8 @@
   width: 1120px;
   flex-wrap: wrap;
   border: 2px solid pallete.$primary-text-colour;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
 
   @include breakpoints.medium-desktop {
     width: 952px;
@@ -29,5 +31,6 @@
     flex-grow: 1;
     font-size: 1.3rem;
     text-decoration: underline;
+    border-bottom-right-radius: 26px;
   }
 }

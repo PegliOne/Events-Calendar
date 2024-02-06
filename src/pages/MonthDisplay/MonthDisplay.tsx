@@ -21,7 +21,7 @@ const MonthDisplay = () => {
   }
 
   const [monthIndex, setMonthIndex] = useState(index);
-  const [modalDate, setModalDate] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const month = getMonthData(monthIndex, year);
 
@@ -30,12 +30,12 @@ const MonthDisplay = () => {
     setMonthIndex(newMonthIndex);
   };
 
-  const openModal = (date: string) => {
-    setModalDate(date);
+  const openModal = () => {
+    setShowModal(true);
   };
 
   const closeModal = () => {
-    setModalDate("");
+    setShowModal(false);
   };
 
   return (
@@ -51,9 +51,7 @@ const MonthDisplay = () => {
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
       />
-      {modalDate.length !== 0 && (
-        <Modal date={modalDate} closeModal={closeModal} />
-      )}
+      {showModal && <Modal closeModal={closeModal} />}
     </main>
   );
 };
