@@ -6,9 +6,16 @@ interface InputProps {
   name: string;
   placeholder?: string;
   isRequired?: boolean;
+  clearMessage: () => void;
 }
 
-const Input = ({ type, name, placeholder, isRequired }: InputProps) => {
+const Input = ({
+  type,
+  name,
+  placeholder,
+  isRequired,
+  clearMessage,
+}: InputProps) => {
   const id = name + "Input";
 
   return (
@@ -23,6 +30,7 @@ const Input = ({ type, name, placeholder, isRequired }: InputProps) => {
         name={name}
         placeholder={placeholder}
         required={isRequired}
+        onClick={clearMessage}
       />
     </div>
   );

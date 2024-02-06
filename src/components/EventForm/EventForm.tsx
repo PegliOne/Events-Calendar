@@ -93,6 +93,13 @@ const EventForm = () => {
 
     addEvent(newEvent);
     console.log("Event Created");
+
+    // Add logic to update message colour
+    setError("Success! Event created");
+  };
+
+  const clearMessage = () => {
+    setError("");
   };
 
   return (
@@ -103,17 +110,43 @@ const EventForm = () => {
         name="eventName"
         placeholder="Christmas Party"
         isRequired={true}
+        clearMessage={clearMessage}
       />
-      <Input type="datetime-local" name="startTime" isRequired={true} />
-      <Input type="datetime-local" name="endTime" isRequired={true} />
+      <Input
+        type="datetime-local"
+        name="startTime"
+        isRequired={true}
+        clearMessage={clearMessage}
+      />
+      <Input
+        type="datetime-local"
+        name="endTime"
+        isRequired={true}
+        clearMessage={clearMessage}
+      />
       <Select
         name="location"
         options={["online", "inPerson"]}
         isRequired={true}
+        clearMessage={clearMessage}
       />
-      <Input type="text" name="address" placeholder="123 Example Street" />
-      <Input type="url" name="url" placeholder="https://www.url.com" />
-      <Select name="label" options={["work", "social", "personal"]} />
+      <Input
+        type="text"
+        name="address"
+        placeholder="123 Example Street"
+        clearMessage={clearMessage}
+      />
+      <Input
+        type="url"
+        name="url"
+        placeholder="https://www.url.com"
+        clearMessage={clearMessage}
+      />
+      <Select
+        name="label"
+        options={["work", "social", "personal"]}
+        clearMessage={clearMessage}
+      />
       <div className={styles.form__submit}>
         <button className={styles.submit__button} type="submit">
           Submit

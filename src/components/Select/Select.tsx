@@ -5,9 +5,10 @@ interface SelectProps {
   name: string;
   options: string[];
   isRequired?: boolean;
+  clearMessage: () => void;
 }
 
-const Select = ({ name, options, isRequired }: SelectProps) => {
+const Select = ({ name, options, isRequired, clearMessage }: SelectProps) => {
   const id = name + "Select";
 
   const formatOption = (camelCaseStr: string) => {
@@ -25,6 +26,7 @@ const Select = ({ name, options, isRequired }: SelectProps) => {
         id={id}
         name={name}
         required={isRequired}
+        onClick={clearMessage}
       >
         {!isRequired && <option value="">Select an Option</option>}
         {options.map((option) => (
