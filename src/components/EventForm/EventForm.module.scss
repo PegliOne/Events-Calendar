@@ -2,7 +2,7 @@
 @use "../../assets/stylesheets/partials/pallete.scss";
 
 .form {
-  .form__error {
+  .form__message {
     height: 52px;
     margin-bottom: 16px;
     color: pallete.$success-text-colour;

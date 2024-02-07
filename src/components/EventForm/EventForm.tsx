@@ -7,13 +7,13 @@ import Select from "../Select/Select";
 const EventForm = () => {
   const formRef = useRef(null);
 
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const [hasError, setHasError] = useState(false);
 
   const validateStartTime = (currentTime: Date, startTime: number) => {
     if (currentTime.getTime() > startTime) {
       setHasError(true);
-      setError("Error: Event start time cannot be in the past");
+      setMessage("Error: Event start time cannot be in the past");
       return false;
     }
 
@@ -27,7 +27,7 @@ const EventForm = () => {
   ) => {
     if (startTime + minEventTimeInSeconds > endTime) {
       setHasError(true);
-      setError(
+      setMessage(
         `Error: Event cannot end less than ${
           minEventTimeInSeconds / 60
         } minutes after start time`
@@ -98,11 +98,11 @@ const EventForm = () => {
     console.log("Event Created");
 
     setHasError(false);
-    setError("Success! Event created");
+    setMessage("Success! Event created");
   };
 
   const clearMessage = () => {
-    setError("");
+    setMessage("");
   };
 
   return (
@@ -110,11 +110,11 @@ const EventForm = () => {
       <div
         className={
           hasError
-            ? styles.form__error + ` ${styles.form__error_error}`
-            : styles.form__error
+            ? styles.form__message + ` ${styles.form__message_error}`
+            : styles.form__message
         }
       >
-        {error}
+        {message}
       </div>
       <Input
         type="text"
