@@ -8,9 +8,11 @@ const EventForm = () => {
   const formRef = useRef(null);
 
   const [error, setError] = useState("");
+  const [hasError, setHasError] = useState(false);
 
   const validateStartTime = (currentTime: Date, startTime: number) => {
     if (currentTime.getTime() > startTime) {
+      setHasError(true);
       setError("Error: Event start time cannot be in the past");
       return false;
     }
@@ -24,6 +26,7 @@ const EventForm = () => {
     minEventTimeInSeconds: number
   ) => {
     if (startTime + minEventTimeInSeconds > endTime) {
+      setHasError(true);
       setError(
         `Error: Event cannot end less than ${
           minEventTimeInSeconds / 60
@@ -94,7 +97,7 @@ const EventForm = () => {
     addEvent(newEvent);
     console.log("Event Created");
 
-    // Add logic to update message colour
+    setHasError(false);
     setError("Success! Event created");
   };
 
@@ -104,7 +107,15 @@ const EventForm = () => {
 
   return (
     <form className={styles.form} onSubmit={submitForm} ref={formRef}>
-      <div className={styles.form__error}>{error}</div>
+      <div
+        className={
+          hasError
+            ? styles.form__error + ` ${styles.form__error_error}`
+            : styles.form__error
+        }
+      >
+        {error}
+      </div>
       <Input
         type="text"
         name="eventName"
