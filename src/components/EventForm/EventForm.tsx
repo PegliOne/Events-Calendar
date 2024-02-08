@@ -9,6 +9,7 @@ const EventForm = () => {
 
   const [message, setMessage] = useState("");
   const [hasError, setHasError] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState("online");
 
   const validateStartTime = (currentTime: Date, startTime: number) => {
     if (currentTime.getTime() > startTime) {
@@ -101,6 +102,10 @@ const EventForm = () => {
     setMessage("Success! Event created");
   };
 
+  const selectLocation = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedLocation(e.currentTarget.value);
+  };
+
   const clearMessage = () => {
     setMessage("");
   };
@@ -140,19 +145,23 @@ const EventForm = () => {
         options={["online", "inPerson"]}
         isRequired={true}
         clearMessage={clearMessage}
+        selectLocation={selectLocation}
       />
-      <Input
-        type="text"
-        name="address"
-        placeholder="123 Example Street"
-        clearMessage={clearMessage}
-      />
-      <Input
-        type="url"
-        name="url"
-        placeholder="https://www.url.com"
-        clearMessage={clearMessage}
-      />
+      {selectedLocation === "online" ? (
+        <Input
+          type="url"
+          name="url"
+          placeholder="https://www.url.com"
+          clearMessage={clearMessage}
+        />
+      ) : (
+        <Input
+          type="text"
+          name="address"
+          placeholder="123 Example Street"
+          clearMessage={clearMessage}
+        />
+      )}
       <Select
         name="label"
         options={["work", "social", "personal"]}

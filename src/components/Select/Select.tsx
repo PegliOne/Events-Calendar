@@ -6,9 +6,16 @@ interface SelectProps {
   options: string[];
   isRequired?: boolean;
   clearMessage: () => void;
+  selectLocation?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Select = ({ name, options, isRequired, clearMessage }: SelectProps) => {
+const Select = ({
+  name,
+  options,
+  isRequired,
+  clearMessage,
+  selectLocation,
+}: SelectProps) => {
   const id = name + "Select";
 
   const formatOption = (camelCaseStr: string) => {
@@ -27,6 +34,7 @@ const Select = ({ name, options, isRequired, clearMessage }: SelectProps) => {
         name={name}
         required={isRequired}
         onClick={clearMessage}
+        onChange={selectLocation}
       >
         {!isRequired && <option value="">Select an Option</option>}
         {options.map((option) => (
