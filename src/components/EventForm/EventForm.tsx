@@ -126,18 +126,24 @@ const EventForm = () => {
         name="eventName"
         placeholder="Christmas Party"
         isRequired={true}
+        minLength={3}
+        maxLength={40}
         clearMessage={clearMessage}
       />
       <Input
         type="datetime-local"
         name="startTime"
         isRequired={true}
+        min="2000-01-01T00:00:00"
+        max="2999-12-31T23:59:59"
         clearMessage={clearMessage}
       />
       <Input
         type="datetime-local"
         name="endTime"
         isRequired={true}
+        min="2000-01-01T00:00:00"
+        max="2999-12-31T23:59:59"
         clearMessage={clearMessage}
       />
       <Select
@@ -152,6 +158,8 @@ const EventForm = () => {
           type="url"
           name="url"
           placeholder="https://www.url.com"
+          minLength={8}
+          maxLength={80}
           clearMessage={clearMessage}
         />
       ) : (
@@ -159,6 +167,8 @@ const EventForm = () => {
           type="text"
           name="address"
           placeholder="123 Example Street"
+          minLength={8}
+          maxLength={80}
           clearMessage={clearMessage}
         />
       )}
