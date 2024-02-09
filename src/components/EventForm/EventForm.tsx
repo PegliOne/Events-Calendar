@@ -7,11 +7,14 @@ import Select from "../Select/Select";
 const EventForm = () => {
   const formRef = useRef(null);
 
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [hasError, setHasError] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState("online");
 
   const validateStartTime = (currentTime: Date, startTime: number) => {
     if (currentTime.getTime() > startTime) {
-      setError("Error: Event start time cannot be in the past");
+      setHasError(true);
+      setMessage("Error: Event start time cannot be in the past");
       return false;
     }
 
@@ -24,7 +27,8 @@ const EventForm = () => {
     minEventTimeInSeconds: number
   ) => {
     if (startTime + minEventTimeInSeconds > endTime) {
-      setError(
+      setHasError(true);
+      setMessage(
         `Error: Event cannot end less than ${
           minEventTimeInSeconds / 60
         } minutes after start time`
@@ -94,34 +98,52 @@ const EventForm = () => {
     addEvent(newEvent);
     console.log("Event Created");
 
-    // Add logic to update message colour
-    setError("Success! Event created");
+    setHasError(false);
+    setMessage("Success! Event created");
+  };
+
+  const selectLocation = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedLocation(e.currentTarget.value);
   };
 
   const clearMessage = () => {
-    setError("");
+    setMessage("");
   };
 
   return (
     <form className={styles.form} onSubmit={submitForm} ref={formRef}>
-      <div className={styles.form__error}>{error}</div>
+      <div
+        className={
+          hasError
+            ? styles.form__message + ` ${styles.form__message_error}`
+            : styles.form__message
+        }
+      >
+        {message}
+      </div>
       <Input
         type="text"
         name="eventName"
         placeholder="Christmas Party"
         isRequired={true}
+        minLength={3}
+        maxLength={40}
         clearMessage={clearMessage}
       />
       <Input
         type="datetime-local"
         name="startTime"
         isRequired={true}
+        min="2000-01-01T00:00:00"
+        max="2999-12-31T23:59:59"
         clearMessage={clearMessage}
       />
       <Input
         type="datetime-local"
         name="endTime"
         isRequired={true}
+        min="2000-01-01T00:00:00"
+        max="2999-12-31T23:59:59"
         clearMessage={clearMessage}
       />
       <Select
@@ -129,19 +151,27 @@ const EventForm = () => {
         options={["online", "inPerson"]}
         isRequired={true}
         clearMessage={clearMessage}
+        selectLocation={selectLocation}
       />
-      <Input
-        type="text"
-        name="address"
-        placeholder="123 Example Street"
-        clearMessage={clearMessage}
-      />
-      <Input
-        type="url"
-        name="url"
-        placeholder="https://www.url.com"
-        clearMessage={clearMessage}
-      />
+      {selectedLocation === "online" ? (
+        <Input
+          type="url"
+          name="url"
+          placeholder="https://www.url.com"
+          minLength={8}
+          maxLength={80}
+          clearMessage={clearMessage}
+        />
+      ) : (
+        <Input
+          type="text"
+          name="address"
+          placeholder="123 Example Street"
+          minLength={8}
+          maxLength={80}
+          clearMessage={clearMessage}
+        />
+      )}
       <Select
         name="label"
         options={["work", "social", "personal"]}

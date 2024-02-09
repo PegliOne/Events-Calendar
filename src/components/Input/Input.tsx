@@ -6,6 +6,10 @@ interface InputProps {
   name: string;
   placeholder?: string;
   isRequired?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: string;
+  max?: string;
   clearMessage: () => void;
 }
 
@@ -14,6 +18,10 @@ const Input = ({
   name,
   placeholder,
   isRequired,
+  minLength,
+  maxLength,
+  min,
+  max,
   clearMessage,
 }: InputProps) => {
   const id = name + "Input";
@@ -30,6 +38,10 @@ const Input = ({
         name={name}
         placeholder={placeholder}
         required={isRequired}
+        minLength={minLength}
+        maxLength={maxLength}
+        min={min}
+        max={max}
         onClick={clearMessage}
       />
     </div>

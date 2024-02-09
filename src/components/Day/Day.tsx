@@ -8,7 +8,7 @@ interface DayProps {
   hasCurrentDate?: boolean;
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
-  openModal?: () => void;
+  openModal: () => void;
 }
 
 const Day = ({
