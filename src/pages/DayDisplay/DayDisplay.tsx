@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import DayHeading from "../../components/DayHeading/DayHeading";
 import Day from "../../components/Day/Day";
+import Modal from "../../components/Modal/Modal";
 import { setMonthAndDate } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 
@@ -13,10 +14,19 @@ const DayDisplay = () => {
   const { month, date } = setMonthAndDate(year);
 
   const [displayedDate, setDisplayedDate] = useState(date);
+  const [showModal, setShowModal] = useState(false);
 
   const updateDate = (value: number): void => {
     let newDate = (displayedDate + value) % (month.dayCount + 1);
     setDisplayedDate(newDate);
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const isCurrentMonth = month.index === today.getMonth();
@@ -38,7 +48,9 @@ const DayDisplay = () => {
         key={displayedDate}
         monthIndex={month.index}
         hasCurrentDate={displayedDate === currentDate && isCurrentMonth}
+        openModal={openModal}
       />
+      {showModal && <Modal closeModal={closeModal} />}
     </main>
   );
 };
