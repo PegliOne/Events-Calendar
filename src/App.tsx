@@ -7,23 +7,26 @@ import MonthDisplay from "./pages/MonthDisplay/MonthDisplay";
 function App() {
   return (
     <>
-      <header>
-        <h1>Event Calendar</h1>
-      </header>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<MonthDisplay />} />
-          <Route
-            path="/day-display/:monthIndex?/:date?"
-            element={<DayDisplay />}
-          />
-          <Route
-            path="/week-display/:monthIndex?/:date?"
-            element={<WeekDisplay />}
-          />
-          <Route path="/month-display/:index?" element={<MonthDisplay />} />
-        </Routes>
-      </BrowserRouter>
+      <section className="overlay"></section>
+      <section className="content">
+        <header>
+          <h1>Event Calendar</h1>
+        </header>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MonthDisplay />} />
+            <Route
+              path="/day-display/:monthIndex?/:date?"
+              element={<DayDisplay />}
+            />
+            <Route
+              path="/week-display/:monthIndex?/:date?"
+              element={<WeekDisplay />}
+            />
+            <Route path="/month-display/:index?" element={<MonthDisplay />} />
+          </Routes>
+        </BrowserRouter>
+      </section>
     </>
   );
 }
