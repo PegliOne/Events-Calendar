@@ -1,0 +1,9 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.card {
+  padding: 8px;
+  background-color: pallete.$primary-background-colour;
+  border: 2px solid pallete.$primary-text-colour;
+  font-size: 1rem;
+  text-align: left;
+}

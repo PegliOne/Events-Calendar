@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Day.module.scss";
+import EventCard from "../EventCard/EventCard";
+import { useState } from "react";
 
 interface DayProps {
   date?: string;
@@ -20,6 +22,8 @@ const Day = ({
   isMonthDisplay,
   openModal,
 }: DayProps) => {
+  const eventDate = "14";
+
   let dayClasses = styles.day;
 
   if (hasCurrentDate) {
@@ -46,6 +50,9 @@ const Day = ({
           >
             {date}
           </Link>
+          {date === eventDate && (
+            <EventCard name="Mock Event Name" time="2:00pm" />
+          )}
           {isMonthDisplay && isWeekStartDate && (
             <Link
               className={styles.day__weekLink}

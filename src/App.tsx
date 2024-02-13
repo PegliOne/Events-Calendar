@@ -25,7 +25,7 @@ function App() {
     overlay?.classList.remove("overlay_show");
   };
 
-  overlay?.addEventListener("click", () => console.log("Hello"));
+  overlay?.addEventListener("click", closeModal);
 
   return (
     <>
