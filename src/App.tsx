@@ -4,32 +4,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DayDisplay from "./pages/DayDisplay/DayDisplay";
 import WeekDisplay from "./pages/WeekDisplay/WeekDisplay";
 import MonthDisplay from "./pages/MonthDisplay/MonthDisplay";
+import Overlay from "./components/Overlay/Overlay";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
 
-  let overlayStyles = "overlay";
-  if (showModal) {
-    overlayStyles += " overlay_show";
-  }
-
-  const overlay = document.querySelector(".overlay");
-
   const openModal = () => {
     setShowModal(true);
-    overlay?.classList.add("overlay_show");
   };
 
   const closeModal = () => {
     setShowModal(false);
-    overlay?.classList.remove("overlay_show");
   };
-
-  overlay?.addEventListener("click", closeModal);
 
   return (
     <>
-      <section className={overlayStyles}></section>
+      <Overlay showOverlay={showModal} closeModal={closeModal} />
       <section className="content">
         <header>
           <h1>Event Calendar</h1>
