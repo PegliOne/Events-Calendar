@@ -6,7 +6,13 @@ import Modal from "../../components/Modal/Modal";
 import { setMonthAndDate } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 
-const DayDisplay = () => {
+interface DayDisplayProps {
+  showModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
+
+const DayDisplay = ({ showModal, openModal, closeModal }: DayDisplayProps) => {
   const today = new Date();
   const currentDate = today.getDate();
   const year = getCurrentYear();
@@ -14,19 +20,10 @@ const DayDisplay = () => {
   const { month, date } = setMonthAndDate(year);
 
   const [displayedDate, setDisplayedDate] = useState(date);
-  const [showModal, setShowModal] = useState(false);
 
   const updateDate = (value: number): void => {
     let newDate = (displayedDate + value) % (month.dayCount + 1);
     setDisplayedDate(newDate);
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   const isCurrentMonth = month.index === today.getMonth();

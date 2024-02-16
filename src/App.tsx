@@ -38,11 +38,23 @@ function App() {
             />
             <Route
               path="/day-display/:monthIndex?/:date?"
-              element={<DayDisplay />}
+              element={
+                <DayDisplay
+                  showModal={showModal}
+                  openModal={openModal}
+                  closeModal={closeModal}
+                />
+              }
             />
             <Route
               path="/week-display/:monthIndex?/:date?"
-              element={<WeekDisplay />}
+              element={
+                <WeekDisplay
+                  showModal={showModal}
+                  openModal={openModal}
+                  closeModal={closeModal}
+                />
+              }
             />
             <Route
               path="/month-display/:index?"

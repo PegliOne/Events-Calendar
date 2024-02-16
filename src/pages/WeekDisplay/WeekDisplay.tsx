@@ -6,7 +6,17 @@ import { getMonthDates, setMonthAndDate } from "../../utils/month-utils";
 import { getCurrentYear } from "../../utils/year-utils";
 import WeekHeading from "../../components/WeekHeading/WeekHeading";
 
-const WeekDisplay = () => {
+interface WeekDisplayProps {
+  showModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
+
+const WeekDisplay = ({
+  showModal,
+  openModal,
+  closeModal,
+}: WeekDisplayProps) => {
   const year = getCurrentYear();
 
   const { month, date } = setMonthAndDate(year);
@@ -16,19 +26,10 @@ const WeekDisplay = () => {
   const currentWeekIndex = Math.floor((date - 1) / 7);
 
   const [weekIndex, setWeekIndex] = useState(currentWeekIndex);
-  const [showModal, setShowModal] = useState(false);
 
   const updateWeekIndex = (value: number): void => {
     const newWeekIndex = (weekIndex + value) % weeks.length;
     setWeekIndex(newWeekIndex);
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   return (
