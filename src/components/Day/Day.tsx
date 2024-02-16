@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import styles from "./Day.module.scss";
 import EventCard from "../EventCard/EventCard";
-import { useState } from "react";
 
 interface DayProps {
   date?: string;
@@ -40,26 +38,38 @@ const Day = ({
     isWeekStartDate = Number(date) % 7 === 1;
   }
 
+  const handleLinkClick = (
+    e: React.MouseEvent<Element, MouseEvent>,
+    link: string
+  ) => {
+    e.stopPropagation();
+    window.location.pathname = link;
+  };
+
   return (
     <section className={dayClasses} onClick={openModal}>
       {showDate && (
         <>
-          <Link
+          <a
             className={styles.day__date}
-            to={`/day-display/${monthIndex}/${date}`}
+            onClick={(e) =>
+              handleLinkClick(e, `/day-display/${monthIndex}/${date}`)
+            }
           >
             {date}
-          </Link>
+          </a>
           {date === eventDate && (
             <EventCard name="Mock Event Name" time="2:00pm" />
           )}
           {isMonthDisplay && isWeekStartDate && (
-            <Link
+            <a
               className={styles.day__weekLink}
-              to={`/week-display/${monthIndex}/${date}`}
+              onClick={(e) =>
+                handleLinkClick(e, `/week-display/${monthIndex}/${date}`)
+              }
             >
               Show Week
-            </Link>
+            </a>
           )}
         </>
       )}
