@@ -58,19 +58,23 @@ const Day = ({
           >
             {date}
           </a>
-          {date === eventDate && (
-            <EventCard name="Mock Event Name" time="2:00pm" />
-          )}
-          {isMonthDisplay && isWeekStartDate && (
-            <a
-              className={styles.day__weekLink}
-              onClick={(e) =>
-                handleLinkClick(e, `/week-display/${monthIndex}/${date}`)
-              }
-            >
-              Show Week
-            </a>
-          )}
+          <div className={styles.day__cardContainer}>
+            {date === eventDate && (
+              <EventCard name="Mock Event Name" time="2:00pm" />
+            )}
+          </div>
+          <div>
+            {isMonthDisplay && isWeekStartDate && (
+              <a
+                className={styles.day__weekLink}
+                onClick={(e) =>
+                  handleLinkClick(e, `/week-display/${monthIndex}/${date}`)
+                }
+              >
+                Show Week
+              </a>
+            )}
+          </div>
         </>
       )}
     </section>

@@ -4,6 +4,13 @@
   padding: 8px;
   background-color: pallete.$primary-background-colour;
   border: 2px solid pallete.$primary-text-colour;
-  font-size: 1rem;
+  font-size: 0.8rem;
   text-align: left;
+  transition: background-color 200ms;
+
+  &:hover {
+    color: pallete.$hover-text-colour;
+    background-color: pallete.$hover-background-colour;
+    cursor: pointer;
+  }
 }
