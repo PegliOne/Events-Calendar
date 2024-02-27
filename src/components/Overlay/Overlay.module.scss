@@ -1,0 +1,19 @@
+@use "../../assets/stylesheets/partials/pallete.scss";
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 1176px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: pallete.$shadow-colour;
+  opacity: 0;
+  transition: opacity 200ms;
+  cursor: pointer;
+
+  &_show {
+    z-index: 1;
+    opacity: 0.75;
+  }
+}

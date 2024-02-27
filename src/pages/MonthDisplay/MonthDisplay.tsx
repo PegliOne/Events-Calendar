@@ -6,7 +6,17 @@ import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
 import { getCurrentYear } from "../../utils/year-utils";
 
-const MonthDisplay = () => {
+interface MonthDisplayProps {
+  showModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+}
+
+const MonthDisplay = ({
+  showModal,
+  openModal,
+  closeModal,
+}: MonthDisplayProps) => {
   const currentMonth = getCurrentMonth();
   const year = getCurrentYear();
 
@@ -21,21 +31,12 @@ const MonthDisplay = () => {
   }
 
   const [monthIndex, setMonthIndex] = useState(index);
-  const [showModal, setShowModal] = useState(false);
 
   const month = getMonthData(monthIndex, year);
 
   const updateMonthIndex = (value: number): void => {
     const newMonthIndex = (monthIndex + value) % 12;
     setMonthIndex(newMonthIndex);
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   return (

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import styles from "./Day.module.scss";
+import EventCard from "../EventCard/EventCard";
 
 interface DayProps {
   date?: string;
@@ -20,6 +20,8 @@ const Day = ({
   isMonthDisplay,
   openModal,
 }: DayProps) => {
+  const eventDate = "14";
+
   let dayClasses = styles.day;
 
   if (hasCurrentDate) {
@@ -36,24 +38,43 @@ const Day = ({
     isWeekStartDate = Number(date) % 7 === 1;
   }
 
+  const handleLinkClick = (
+    e: React.MouseEvent<Element, MouseEvent>,
+    link: string
+  ) => {
+    e.stopPropagation();
+    window.location.pathname = link;
+  };
+
   return (
     <section className={dayClasses} onClick={openModal}>
       {showDate && (
         <>
-          <Link
+          <a
             className={styles.day__date}
-            to={`/day-display/${monthIndex}/${date}`}
+            onClick={(e) =>
+              handleLinkClick(e, `/day-display/${monthIndex}/${date}`)
+            }
           >
             {date}
-          </Link>
-          {isMonthDisplay && isWeekStartDate && (
-            <Link
-              className={styles.day__weekLink}
-              to={`/week-display/${monthIndex}/${date}`}
-            >
-              Show Week
-            </Link>
-          )}
+          </a>
+          <div className={styles.day__cardContainer}>
+            {date === eventDate && (
+              <EventCard name="Mock Event Name" time="2:00pm" />
+            )}
+          </div>
+          <div>
+            {isMonthDisplay && isWeekStartDate && (
+              <a
+                className={styles.day__weekLink}
+                onClick={(e) =>
+                  handleLinkClick(e, `/week-display/${monthIndex}/${date}`)
+                }
+              >
+                Show Week
+              </a>
+            )}
+          </div>
         </>
       )}
     </section>
