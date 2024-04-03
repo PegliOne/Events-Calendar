@@ -5,6 +5,7 @@ interface DayProps {
   date?: string;
   monthIndex: number;
   showDate?: boolean;
+  hasEvent?: boolean;
   hasCurrentDate?: boolean;
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
@@ -15,13 +16,12 @@ const Day = ({
   date,
   monthIndex,
   showDate,
+  hasEvent,
   hasCurrentDate,
   hasBottomLeftDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
-  const eventDate = "14";
-
   let dayClasses = styles.day;
 
   if (hasCurrentDate) {
@@ -59,9 +59,7 @@ const Day = ({
             {date}
           </a>
           <div className={styles.day__cardContainer}>
-            {date === eventDate && (
-              <EventCard name="Mock Event Name" time="2:00pm" />
-            )}
+            {hasEvent && <EventCard name="Mock Event Name" time="2:00pm" />}
           </div>
           <div>
             {isMonthDisplay && isWeekStartDate && (
