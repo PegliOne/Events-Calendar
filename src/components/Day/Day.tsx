@@ -1,10 +1,16 @@
 import styles from "./Day.module.scss";
 import EventCard from "../EventCard/EventCard";
 
+interface EventProps {
+  eventName: string;
+  startTime: Date;
+}
 interface DayProps {
   date?: string;
   monthIndex: number;
+  event?: EventProps;
   showDate?: boolean;
+  hasEvent?: boolean;
   hasCurrentDate?: boolean;
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
@@ -14,15 +20,17 @@ interface DayProps {
 const Day = ({
   date,
   monthIndex,
+  event,
   showDate,
+  hasEvent,
   hasCurrentDate,
   hasBottomLeftDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
-  const eventDate = "14";
-
+  console.log(hasEvent);
   let dayClasses = styles.day;
+  console.log(event);
 
   if (hasCurrentDate) {
     dayClasses += ` ${styles.day_current}`;
@@ -46,6 +54,19 @@ const Day = ({
     window.location.pathname = link;
   };
 
+  const formatStartTime = (startTime: Date) => {
+    const hours =
+      startTime.getHours() <= 12
+        ? startTime.getHours()
+        : startTime.getHours() - 12;
+    const minutes =
+      startTime.getMinutes() < 10
+        ? "0" + startTime.getMinutes()
+        : startTime.getMinutes();
+    const marker = startTime.getHours() < 12 ? "am" : "pm";
+    return hours + ":" + minutes + marker;
+  };
+
   return (
     <section className={dayClasses} onClick={openModal}>
       {showDate && (
@@ -59,8 +80,11 @@ const Day = ({
             {date}
           </a>
           <div className={styles.day__cardContainer}>
-            {date === eventDate && (
-              <EventCard name="Mock Event Name" time="2:00pm" />
+            {event && (
+              <EventCard
+                name={event.eventName}
+                time={formatStartTime(event.startTime)}
+              />
             )}
           </div>
           <div>
