@@ -28,6 +28,7 @@ const Day = ({
   isMonthDisplay,
   openModal,
 }: DayProps) => {
+  console.log(hasEvent);
   let dayClasses = styles.day;
   console.log(event);
 
