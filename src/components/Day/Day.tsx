@@ -79,7 +79,7 @@ const Day = ({
             {date}
           </a>
           <div className={styles.day__cardContainer}>
-            {hasEvent && (
+            {event && (
               <EventCard
                 name={event.eventName}
                 time={formatStartTime(event.startTime)}
