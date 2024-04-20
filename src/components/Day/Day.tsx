@@ -8,7 +8,7 @@ interface EventProps {
 interface DayProps {
   date?: string;
   monthIndex: number;
-  event: EventProps;
+  event?: EventProps;
   showDate?: boolean;
   hasEvent?: boolean;
   hasCurrentDate?: boolean;
