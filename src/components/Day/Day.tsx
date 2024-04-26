@@ -10,7 +10,6 @@ interface DayProps {
   monthIndex: number;
   event?: EventProps;
   showDate?: boolean;
-  hasEvent?: boolean;
   hasCurrentDate?: boolean;
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
@@ -22,13 +21,11 @@ const Day = ({
   monthIndex,
   event,
   showDate,
-  hasEvent,
   hasCurrentDate,
   hasBottomLeftDate,
   isMonthDisplay,
   openModal,
 }: DayProps) => {
-  console.log(hasEvent);
   let dayClasses = styles.day;
   console.log(event);
 
@@ -55,16 +52,13 @@ const Day = ({
   };
 
   const formatStartTime = (startTime: Date) => {
-    const hours =
-      startTime.getHours() <= 12
-        ? startTime.getHours()
-        : startTime.getHours() - 12;
-    const minutes =
-      startTime.getMinutes() < 10
-        ? "0" + startTime.getMinutes()
-        : startTime.getMinutes();
-    const marker = startTime.getHours() < 12 ? "am" : "pm";
-    return hours + ":" + minutes + marker;
+    return startTime
+      .toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+      })
+      .replace(" ", "")
+      .toLowerCase();
   };
 
   return (
