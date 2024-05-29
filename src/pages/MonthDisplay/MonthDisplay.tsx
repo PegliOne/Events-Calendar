@@ -5,7 +5,6 @@ import MonthHeading from "../../components/MonthHeading/MonthHeading";
 import Month from "../../components/Month/Month";
 import Modal from "../../components/Modal/Modal";
 import { getCurrentYear } from "../../utils/year-utils";
-import EventCardModal from "../../components/EventCardModal/EventCardModal";
 
 interface MonthDisplayProps {
   showModal: boolean;
@@ -53,16 +52,7 @@ const MonthDisplay = ({
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
       />
-      {showModal && <Modal closeModal={closeModal} />}
-      <EventCardModal
-        eventName={"Mock Event"}
-        startTime={"May 14th: 2:00pm"}
-        endTime={"May 14th: 4:00pm"}
-        location={"online"}
-        url="https://www.url.com"
-        label={"Social"}
-        closeModal={closeModal}
-      />
+      {showModal && <Modal content="eventDetails" closeModal={closeModal} />}
     </main>
   );
 };
