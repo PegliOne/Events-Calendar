@@ -8,8 +8,18 @@ import Overlay from "./components/Overlay/Overlay";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("eventForm");
 
-  const openModal = () => {
+  const openModal = (e: React.MouseEvent<Element, MouseEvent>) => {
+    e.stopPropagation();
+    const eventTargetId = e.currentTarget.getAttribute("id");
+    if (eventTargetId) {
+      if (/event-card/.test(eventTargetId)) {
+        setModalContent("eventDetails");
+      } else {
+        setModalContent("eventForm");
+      }
+    }
     setShowModal(true);
   };
 
@@ -31,6 +41,7 @@ function App() {
               element={
                 <MonthDisplay
                   showModal={showModal}
+                  modalContent={modalContent}
                   openModal={openModal}
                   closeModal={closeModal}
                 />
@@ -61,6 +72,7 @@ function App() {
               element={
                 <MonthDisplay
                   showModal={showModal}
+                  modalContent={modalContent}
                   openModal={openModal}
                   closeModal={closeModal}
                 />

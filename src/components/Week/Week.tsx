@@ -6,7 +6,7 @@ interface DayHeadingProps {
   week: number[];
   isLastWeek: boolean;
   monthIndex: number;
-  openModal: (value: string) => void;
+  openModal: (e: React.MouseEvent<Element, MouseEvent>, value: string) => void;
 }
 
 const Week = ({ week, isLastWeek, monthIndex, openModal }: DayHeadingProps) => {
@@ -33,7 +33,7 @@ const Week = ({ week, isLastWeek, monthIndex, openModal }: DayHeadingProps) => {
           hasCurrentDate={date === currentDate && isCurrentMonth}
           hasBottomLeftDate={date % 7 === 4}
           showDate={true}
-          openModal={() => openModal(formatDate(date))}
+          openModal={(e) => openModal(e, formatDate(date))}
         />
       ))}
       <section className={weekNotesStyles}>Notes</section>

@@ -7,7 +7,7 @@ interface MonthProps {
   index: number;
   dayCount: number;
   isCurrentMonth: boolean;
-  openModal: (value: string) => void;
+  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
 interface EventProps {
@@ -45,7 +45,7 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
             hasBottomLeftDate={date === 29}
             showDate={true}
             isMonthDisplay={true}
-            openModal={() => openModal(formatDate(date))}
+            openModal={(e) => openModal(e)}
           />
         ))}
         <section className={styles.month__notes}>Notes</section>

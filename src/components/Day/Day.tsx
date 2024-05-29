@@ -13,7 +13,7 @@ interface DayProps {
   hasCurrentDate?: boolean;
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
-  openModal: () => void;
+  openModal: (e: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
 const Day = ({
@@ -62,7 +62,11 @@ const Day = ({
   };
 
   return (
-    <section className={dayClasses} onClick={openModal}>
+    <section
+      id={`day-${date}`}
+      className={dayClasses}
+      onClick={(e) => openModal(e)}
+    >
       {showDate && (
         <>
           <a
@@ -78,6 +82,7 @@ const Day = ({
               <EventCard
                 name={event.eventName}
                 time={formatStartTime(event.startTime)}
+                openModal={openModal}
               />
             )}
           </div>
