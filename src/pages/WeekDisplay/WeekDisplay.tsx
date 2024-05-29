@@ -49,7 +49,7 @@ const WeekDisplay = ({
         monthIndex={month.index}
         openModal={openModal}
       />
-      {showModal && <Modal closeModal={closeModal} />}
+      {showModal && <Modal content="eventForm" closeModal={closeModal} />}
     </main>
   );
 };
