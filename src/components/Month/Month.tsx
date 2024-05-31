@@ -7,7 +7,7 @@ interface MonthProps {
   index: number;
   dayCount: number;
   isCurrentMonth: boolean;
-  openModal: (value: string) => void;
+  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
 interface EventProps {
@@ -19,16 +19,6 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
   const currentDate = today.getDate();
 
   const dates = getMonthDates(dayCount);
-
-  const storedEvents = localStorage.getItem("events") ?? "";
-  const datesWithEvents = JSON.parse(storedEvents)
-    .filter(
-      (storedEvent: EventProps) =>
-        new Date(storedEvent.startTime).getMonth() === index
-    )
-    .map((storedEvent: EventProps) =>
-      new Date(storedEvent.startTime).getDate()
-    );
 
   const getEvent = (date: Number) => {
     const storedEvents = JSON.parse(localStorage.getItem("events") ?? "");
@@ -51,12 +41,11 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
             date={formatDate(date)}
             monthIndex={index}
             event={getEvent(date)}
-            hasEvent={datesWithEvents.includes(date)}
             hasCurrentDate={date === currentDate && isCurrentMonth}
             hasBottomLeftDate={date === 29}
             showDate={true}
             isMonthDisplay={true}
-            openModal={() => openModal(formatDate(date))}
+            openModal={(e) => openModal(e)}
           />
         ))}
         <section className={styles.month__notes}>Notes</section>

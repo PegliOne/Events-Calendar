@@ -8,7 +8,7 @@ import WeekHeading from "../../components/WeekHeading/WeekHeading";
 
 interface WeekDisplayProps {
   showModal: boolean;
-  openModal: () => void;
+  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
   closeModal: () => void;
 }
 
@@ -49,7 +49,7 @@ const WeekDisplay = ({
         monthIndex={month.index}
         openModal={openModal}
       />
-      {showModal && <Modal closeModal={closeModal} />}
+      {showModal && <Modal content="eventForm" closeModal={closeModal} />}
     </main>
   );
 };

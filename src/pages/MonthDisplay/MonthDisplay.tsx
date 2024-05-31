@@ -8,12 +8,14 @@ import { getCurrentYear } from "../../utils/year-utils";
 
 interface MonthDisplayProps {
   showModal: boolean;
-  openModal: () => void;
+  modalContent: string;
+  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
   closeModal: () => void;
 }
 
 const MonthDisplay = ({
   showModal,
+  modalContent,
   openModal,
   closeModal,
 }: MonthDisplayProps) => {
@@ -52,7 +54,7 @@ const MonthDisplay = ({
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
       />
-      {showModal && <Modal closeModal={closeModal} />}
+      {showModal && <Modal content={modalContent} closeModal={closeModal} />}
     </main>
   );
 };

@@ -8,7 +8,7 @@ import { getCurrentYear } from "../../utils/year-utils";
 
 interface DayDisplayProps {
   showModal: boolean;
-  openModal: () => void;
+  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
   closeModal: () => void;
 }
 
@@ -47,7 +47,7 @@ const DayDisplay = ({ showModal, openModal, closeModal }: DayDisplayProps) => {
         hasCurrentDate={displayedDate === currentDate && isCurrentMonth}
         openModal={openModal}
       />
-      {showModal && <Modal closeModal={closeModal} />}
+      {showModal && <Modal content="eventForm" closeModal={closeModal} />}
     </main>
   );
 };
