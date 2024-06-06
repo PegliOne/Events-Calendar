@@ -27,7 +27,6 @@ const Day = ({
   openModal,
 }: DayProps) => {
   let dayClasses = styles.day;
-  console.log(event);
 
   if (hasCurrentDate) {
     dayClasses += ` ${styles.day_current}`;

@@ -96,7 +96,6 @@ const EventForm = () => {
     };
 
     addEvent(newEvent);
-    console.log("Event Created");
 
     setHasError(false);
     setMessage("Success! Event created");
