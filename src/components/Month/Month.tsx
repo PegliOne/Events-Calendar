@@ -7,14 +7,38 @@ interface MonthProps {
   index: number;
   dayCount: number;
   isCurrentMonth: boolean;
-  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  openModal: (e: React.MouseEvent<Element, MouseEvent>) => void;
+  openEventDetailsModal: (
+    e: React.MouseEvent<Element, MouseEvent>,
+    event: EventProps
+  ) => void;
 }
 
 interface EventProps {
+  eventName: string;
   startTime: Date;
+  endTime: Date;
+  location?: string;
+  url?: string;
+  label?: string;
 }
 
-const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
+interface EventDetailsProps {
+  eventName: string;
+  startTime: string;
+  endTime: string;
+  location?: string;
+  url?: string;
+  label?: string;
+}
+
+const Month = ({
+  index,
+  dayCount,
+  isCurrentMonth,
+  openModal,
+  openEventDetailsModal,
+}: MonthProps) => {
   const today = new Date();
   const currentDate = today.getDate();
 
@@ -22,14 +46,17 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
 
   const getEvent = (date: Number) => {
     const storedEvents = JSON.parse(localStorage.getItem("events") ?? "");
-    const event = storedEvents.filter((event: EventProps) => {
-      const eventDate = new Date(event.startTime);
-      return eventDate.getMonth() === index && eventDate.getDate() === date;
-    })[0];
-    if (event) {
-      event.startTime = new Date(event.startTime);
+    const eventDetails = storedEvents.filter(
+      (eventDetails: EventDetailsProps) => {
+        const eventDate = new Date(eventDetails.startTime);
+        return eventDate.getMonth() === index && eventDate.getDate() === date;
+      }
+    )[0];
+    if (eventDetails) {
+      eventDetails.startTime = new Date(eventDetails.startTime);
+      eventDetails.endTime = new Date(eventDetails.endTime);
     }
-    return event;
+    return eventDetails;
   };
 
   return (
@@ -46,6 +73,7 @@ const Month = ({ index, dayCount, isCurrentMonth, openModal }: MonthProps) => {
             showDate={true}
             isMonthDisplay={true}
             openModal={(e) => openModal(e)}
+            openEventDetailsModal={openEventDetailsModal}
           />
         ))}
         <section className={styles.month__notes}>Notes</section>

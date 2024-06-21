@@ -4,6 +4,10 @@ import EventCard from "../EventCard/EventCard";
 interface EventProps {
   eventName: string;
   startTime: Date;
+  endTime: Date;
+  location?: string;
+  url?: string;
+  label?: string;
 }
 interface DayProps {
   date?: string;
@@ -14,6 +18,10 @@ interface DayProps {
   hasBottomLeftDate?: boolean;
   isMonthDisplay?: boolean;
   openModal: (e: React.MouseEvent<Element, MouseEvent>) => void;
+  openEventDetailsModal: (
+    e: React.MouseEvent<Element, MouseEvent>,
+    event: EventProps
+  ) => void;
 }
 
 const Day = ({
@@ -25,6 +33,7 @@ const Day = ({
   hasBottomLeftDate,
   isMonthDisplay,
   openModal,
+  openEventDetailsModal,
 }: DayProps) => {
   let dayClasses = styles.day;
 
@@ -50,16 +59,6 @@ const Day = ({
     window.location.pathname = link;
   };
 
-  const formatStartTime = (startTime: Date) => {
-    return startTime
-      .toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-      })
-      .replace(" ", "")
-      .toLowerCase();
-  };
-
   return (
     <section
       id={`day-${date}`}
@@ -79,9 +78,9 @@ const Day = ({
           <div className={styles.day__cardContainer}>
             {event && (
               <EventCard
-                name={event.eventName}
-                time={formatStartTime(event.startTime)}
+                event={event}
                 openModal={openModal}
+                openEventDetailsModal={openEventDetailsModal}
               />
             )}
           </div>

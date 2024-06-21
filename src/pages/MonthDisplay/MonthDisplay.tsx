@@ -8,14 +8,21 @@ import { getCurrentYear } from "../../utils/year-utils";
 
 interface MonthDisplayProps {
   showModal: boolean;
-  modalContent: string;
-  openModal: (event: React.MouseEvent<Element, MouseEvent>) => void;
+  openModal: (e: React.MouseEvent<Element, MouseEvent>) => void;
   closeModal: () => void;
+}
+
+interface EventProps {
+  eventName: string;
+  startTime: Date;
+  endTime: Date;
+  location?: string;
+  url?: string;
+  label?: string;
 }
 
 const MonthDisplay = ({
   showModal,
-  modalContent,
   openModal,
   closeModal,
 }: MonthDisplayProps) => {
@@ -41,6 +48,23 @@ const MonthDisplay = ({
     setMonthIndex(newMonthIndex);
   };
 
+  const blankEvent = {
+    eventName: "",
+    startTime: new Date(),
+    endTime: new Date(),
+  };
+
+  const [eventDetails, setEventDetails] = useState(blankEvent);
+
+  const openEventDetailsModal = (
+    e: React.MouseEvent<Element, MouseEvent>,
+    event: EventProps
+  ) => {
+    e.stopPropagation();
+    setEventDetails(event);
+    openModal(e);
+  };
+
   return (
     <main>
       <MonthHeading
@@ -53,8 +77,9 @@ const MonthDisplay = ({
         dayCount={month.dayCount}
         isCurrentMonth={monthIndex === currentMonth.index}
         openModal={openModal}
+        openEventDetailsModal={openEventDetailsModal}
       />
-      {showModal && <Modal content={modalContent} closeModal={closeModal} />}
+      {showModal && <Modal event={eventDetails} closeModal={closeModal} />}
     </main>
   );
 };

@@ -3,34 +3,43 @@ import EventForm from "../EventForm/EventForm";
 import EventDetails from "../EventDetails/EventDetails";
 
 interface ModalProps {
-  content: string;
+  event: EventProps;
   closeModal: () => void;
 }
 
-const Modal = ({ content, closeModal }: ModalProps) => {
+interface EventProps {
+  eventName: string;
+  startTime: Date;
+  endTime: Date;
+  location?: string;
+  url?: string;
+  label?: string;
+}
+
+const Modal = ({ event, closeModal }: ModalProps) => {
   return (
     <section className={styles.modal}>
       <section className={styles.modal__content}>
         <div className={styles.modal__header}>
           <h3 className={styles.header__heading}>
-            {content === "eventForm" ? "Create A New Event" : "Mock Event"}
+            {event.eventName !== "" ? event.eventName : "Create A New Event"}
           </h3>
           <button className={styles.header__closeButton} onClick={closeModal}>
             x
           </button>
         </div>
-        {content === "eventForm" ? (
-          <EventForm />
-        ) : (
+        {event.eventName !== "" ? (
           <EventDetails
-            eventName={"Mock Event"}
-            startTime={"May 14th: 2:00pm"}
-            endTime={"May 14th: 4:00pm"}
-            location={"online"}
-            url="https://www.url.com"
-            label={"Social"}
+            eventName={event.eventName}
+            startTime={event.startTime}
+            endTime={event.endTime}
+            location={event.location}
+            url={event.url}
+            label={event.label}
             closeModal={closeModal}
           />
+        ) : (
+          <EventForm />
         )}
       </section>
     </section>
