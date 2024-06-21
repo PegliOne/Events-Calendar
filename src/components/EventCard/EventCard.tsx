@@ -1,19 +1,48 @@
 import styles from "./EventCard.module.scss";
 
 interface EventCardProps {
-  name: string;
-  time: string;
-  openModal: (e: React.MouseEvent<Element, MouseEvent>) => void;
+  event: EventProps;
+  openModal: (
+    e: React.MouseEvent<Element, MouseEvent>,
+    event?: EventProps
+  ) => void;
+  openEventDetailsModal: (
+    e: React.MouseEvent<Element, MouseEvent>,
+    event: EventProps
+  ) => void;
 }
 
-const EventCard = ({ name, time, openModal }: EventCardProps) => {
+interface EventProps {
+  eventName: string;
+  startTime: Date;
+  endTime: Date;
+  location?: string;
+  url?: string;
+  label?: string;
+}
+
+const formatStartTime = (startTime?: Date) => {
+  if (startTime) {
+    return startTime
+      .toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+      })
+      .replace(" ", "")
+      .toLowerCase();
+  } else {
+    return "string";
+  }
+};
+
+const EventCard = ({ event, openEventDetailsModal }: EventCardProps) => {
   return (
     <div
-      id={`event-card-${name}`}
+      id={`event-card-${event.eventName}`}
       className={styles.card}
-      onClick={(e) => openModal(e)}
+      onClick={(e) => openEventDetailsModal(e, event)}
     >
-      {time}: {name}
+      {formatStartTime(event.startTime)}: {event.eventName}
     </div>
   );
 };

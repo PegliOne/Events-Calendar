@@ -2,14 +2,24 @@ import styles from "./EventDetails.module.scss";
 
 interface EventDetailsProps {
   eventName: String;
-  startTime: String;
-  endTime: String;
-  location: String;
+  startTime: Date;
+  endTime: Date;
+  location?: String;
   address?: String;
   url?: String;
-  label: String;
+  label?: String;
   closeModal: () => void;
 }
+
+const formatStartTime = (startTime: Date) => {
+  return startTime
+    .toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+    })
+    .replace(" ", "")
+    .toLowerCase();
+};
 
 const EventDetails = ({
   startTime,
@@ -22,10 +32,10 @@ const EventDetails = ({
   return (
     <div className={styles.details}>
       <p>
-        <span>Start Time:</span> {startTime}
+        <span>Start Time:</span> {formatStartTime(startTime)}
       </p>
       <p>
-        <span>End Time:</span> {endTime}
+        <span>End Time:</span> {formatStartTime(endTime)}
       </p>
       {location === "online" ? (
         <p>
