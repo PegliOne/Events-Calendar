@@ -32,21 +32,25 @@ const EventDetails = ({
   return (
     <div className={styles.details}>
       <p>
-        <span>Start Time:</span> {formatStartTime(startTime)}
+        <span className={styles.details__span}>Start Time:</span>{" "}
+        {formatStartTime(startTime)}
       </p>
       <p>
-        <span>End Time:</span> {formatStartTime(endTime)}
+        <span className={styles.details__span}>End Time:</span>{" "}
+        {formatStartTime(endTime)}
       </p>
       {location === "online" ? (
         <p>
-          <span>URL:</span> {url}
+          <span className={styles.details__span}>URL:</span> {url}
         </p>
       ) : (
         <p>
-          <span>Address:</span> {address}
+          <span className={styles.details__span}>Address:</span> {address}
         </p>
       )}
-      <p>Label: {label}</p>
+      <p>
+        <span className={styles.details__span}>Label:</span> {label}
+      </p>
     </div>
   );
 };
